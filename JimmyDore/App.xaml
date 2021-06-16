@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:converter="clr-namespace:JimmyDore.Converters"
+                        x:Class="JimmyDore.App"
+                        xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms">
+    <Application.Resources>
+        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <!-- Colours -->
+            <Color x:Key="greenPrimary">#BED600</Color>
+            <Color x:Key="greenAlternative">#81B30E</Color>
+            <Color x:Key="staffblue">#4A90E2</Color>
+            <Color x:Key="darkblue">#01368a</Color>
+            <Color x:Key="warning">#FF4D00</Color>
+            <Color x:Key="fiveDollarPink">#de8fab</Color>
+            <Color x:Key="tenDollarBlue">#40a7da</Color>
+            <Color x:Key="twentyDollarRed">#f94c07</Color>
+            <Color x:Key="fiftyDollarYellow">#eacf80</Color>
+            <Color x:Key="oneHundredDollarGreen">#50b166</Color>
+            <Color x:Key="purpleText">#884de7</Color>
+            <Color x:Key="positiveBlue">#58bdb4</Color>
+            <Color x:Key="greyNavbar">#38474f</Color>
+            <Color x:Key="defaultText">#333333</Color>
+            <Color x:Key="brown">#984b0b</Color>
+
+            
+            
+            <Color x:Key="navBarTextColour">#373737</Color>
+            <Color x:Key="navBarBackgroundColour">#FFFFFF</Color>
+            
+            <!-- Tones -->
+            <Color x:Key="darkGrey">#373737</Color>
+            <Color x:Key="blackOverlay">#333333</Color> <!--80%-->
+            <Color x:Key="grey">#d8d8d8</Color>
+            <Color x:Key="mediumGrey">#c8c8c8</Color>
+            <Color x:Key="lightGrey">#F2F2F2</Color>
+            <Color x:Key="white">#FFFFFF</Color>
+
+            <x:String x:Key="hamburgerIconLight">ic_menu_light</x:String>
+            <x:String x:Key="hamburgerIconDark">ic_menu_dark</x:String>
+
+            <x:String x:Key="hamburgerIcon">ic_menu_dark</x:String>
+            <Color x:Key="hamburgerIconTint">#373737</Color>
+
+            <Style x:Key="DynamicMenuIcon" TargetType="NavigationPage">
+                <Setter Property="Icon" Value="{DynamicResource hamburgerIcon}"/>
+                <Setter Property="Tint" Value="{DynamicResource hamburgerIconTint}" />
+            </Style>
+
+            <Style x:Key="tapToTitle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Roboto#700"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="{StaticResource greenPrimary}"/>
+            </Style>
+
+            <Style x:Key="tapToMessage" TargetType="Label">
+                <Setter Property="Margin" Value="75,0"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="VerticalTextAlignment" Value="Start"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="{StaticResource white}"/>
+            </Style>
+
+            <Style x:Key="materialButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource fiftyDollarYellow}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="150"/>
+                <Setter Property="BorderColor" Value="{StaticResource lightGrey}"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="BorderRadius" Value="4"/>
+                <Setter Property="Padding" Value="16,5"/>
+                <Setter Property="TextColor" Value="{StaticResource darkblue}"/>
+            </Style>
+
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+
+        </ResourceDictionary>
+
+    </Application.Resources>
+</prism:PrismApplication>

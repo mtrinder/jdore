@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="JimmyDore.Dialogs.AlertDialogView">
+  <ContentView.Content>
+      <Frame CornerRadius="2"              
+             Padding="0"
+             Margin="20"
+             BackgroundColor="{StaticResource white}"
+             HorizontalOptions="CenterAndExpand"
+             VerticalOptions="CenterAndExpand"
+             HasShadow="true">
+          <StackLayout
+              Padding="0"
+              Margin="0"
+              BackgroundColor="{StaticResource white}"
+              HorizontalOptions="CenterAndExpand"
+              Spacing="5"
+              VerticalOptions="CenterAndExpand"
+              >
+              <Label
+                  x:Name="TitleLabel"
+                  Margin="20,20,20,0"
+                  FontSize="Medium"
+                  TextColor="{StaticResource defaultText}"
+                  FontAttributes="Bold"
+                  Text="Alert" />
+              <Label
+                  Margin="20,0,20,0"
+                  x:Name="MessageLabel"
+                  FontSize="Body"
+                  TextColor="{StaticResource defaultText}"
+                  Text="!"/>
+              <Grid Margin="10,0,10,5">
+                  <Button
+                      x:Name="CancelButton"
+                      Grid.Column="1"
+                      BackgroundColor="Transparent"
+                      Text="Cancel"
+                      TextColor="{StaticResource purpleText}"
+                      FontAttributes="Bold"
+                      Clicked="OnCancelButtonClicked">
+                  </Button>
+                  <Button
+                      x:Name="AcceptButton"
+                      Grid.Column="2"
+                      BackgroundColor="Transparent"
+                      Text="OK"
+                      TextColor="{StaticResource purpleText}"
+                      FontAttributes="Bold"
+                      Clicked="OnAcceptButtonClicked">
+
+                  </Button>
+                  <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+              </Grid>
+          </StackLayout>  
+      </Frame>
+  </ContentView.Content>
+</ContentView>

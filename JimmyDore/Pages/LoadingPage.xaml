@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:i18N="clr-namespace:JimmyDore.Markup"
+             xmlns:ext="clr-namespace:JimmyDore.Extensions"
+             xmlns:view="clr-namespace:JimmyDore.Views"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="JimmyDore.Pages.LoadingPage"
+             BackgroundColor="{StaticResource staffblue}">
+    <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <view:LoadingView Grid.Row="0"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                HeightRequest="100"/>
+
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                VerticalOptions="FillAndExpand">
+
+                <!--<StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NoPassCardTappedCommand}"/>
+                </StackLayout.GestureRecognizers>-->
+
+                <!--<Label Text="{i18N:Translate ToStartLabel}"
+                   Style="{StaticResource tapToTitle}"/>-->
+
+                <Image Source="{ext:ImageResource JimmyDore.Images.jd-icon.png}"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,16" />
+
+                <Label Text="Sign In Options" Padding="0,40,0,00"
+                   Style="{StaticResource tapToMessage}"/>
+
+                <Button
+                    VerticalOptions="End" 
+                    Text="{i18N:Translate MemberAccess}"
+                    Margin="60,10,60,10"
+                    Command="{Binding MemberAccessCommand}"
+                    Style="{StaticResource materialButton}"/>
+
+                <Button
+                    VerticalOptions="End" 
+                    Text="{i18N:Translate GuestAccess}"
+                    Margin="60,0,60,10"
+                    Command="{Binding GuestAccessCommand}"
+                    Style="{StaticResource materialButton}"/>
+
+                <!--<view:LoadingView HorizontalOptions="CenterAndExpand"
+                    
+                               HeightRequest="100"
+                               IsVisible="{Binding IsBusy}"
+                               Padding="0"/>-->
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
