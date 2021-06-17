@@ -49,10 +49,18 @@
     <None Remove="jimmydore.mp3" />
     <None Remove="Sounds\jimmydore.mp3" />
     <None Remove="Images\jd-icon.png" />
+    <None Remove="Images\jd-curtain.png" />
+    <None Remove="Images\jd-show-off.png" />
+    <None Remove="Images\jd-show-words.png" />
+    <None Remove="Images\jd-show.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />
     <EmbeddedResource Include="Images\jd-icon.png" />
+    <EmbeddedResource Include="Images\jd-curtain.png" />
+    <EmbeddedResource Include="Images\jd-show-off.png" />
+    <EmbeddedResource Include="Images\jd-show-words.png" />
+    <EmbeddedResource Include="Images\jd-show.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

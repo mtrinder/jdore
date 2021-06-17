@@ -24,8 +24,6 @@
             <Color x:Key="defaultText">#333333</Color>
             <Color x:Key="brown">#984b0b</Color>
 
-            
-            
             <Color x:Key="navBarTextColour">#373737</Color>
             <Color x:Key="navBarBackgroundColour">#FFFFFF</Color>
             
@@ -63,7 +61,7 @@
                 <Setter Property="FontSize" Value="22"/>
                 <Setter Property="VerticalTextAlignment" Value="Start"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="TextColor" Value="{StaticResource white}"/>
+                <Setter Property="TextColor" Value="{StaticResource darkblue}"/>
             </Style>
 
             <Style x:Key="materialButton" TargetType="Button">
@@ -76,7 +74,7 @@
                 <Setter Property="BorderWidth" Value="1"/>
                 <Setter Property="BorderRadius" Value="4"/>
                 <Setter Property="Padding" Value="16,5"/>
-                <Setter Property="TextColor" Value="{StaticResource darkblue}"/>
+                <Setter Property="TextColor" Value="{StaticResource brown}"/>
             </Style>
 
             <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>

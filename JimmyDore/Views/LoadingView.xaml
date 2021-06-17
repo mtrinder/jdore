@@ -10,10 +10,11 @@
                BackgroundColor="Transparent"
                IsVisible="True">
         <lottie:AnimationView
+            Animation="thumb-icon.json"
             AnimationSource="AssetOrBundle"
             RepeatMode="Infinite"
             AutoPlay="True"
-            Animation="profile-icon.json"
+            Speed="0.75"
             IsVisible="True"/>
          </Frame>
     </ContentView.Content>

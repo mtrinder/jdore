@@ -49,6 +49,7 @@ namespace JimmyDore
 
             try
             {
+                //await NavigationService.NavigateAsync($"{nameof(CurtainsPage)}");
                 await NavigationService.NavigateAsync($"{nameof(LoadingPage)}");
             }
             catch (Exception ex)
@@ -61,6 +62,7 @@ namespace JimmyDore
         {
             containerRegistry.RegisterSingleton<IJimmyDoreDialogService, JimmyDoreDialogService>();
 
+            containerRegistry.RegisterForNavigation<CurtainsPage, CurtainsPageViewModel>();
             containerRegistry.RegisterForNavigation<LoadingPage, LoadingPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
         }

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:i18N="clr-namespace:JimmyDore.Markup"
+             xmlns:ext="clr-namespace:JimmyDore.Extensions"
+             xmlns:view="clr-namespace:JimmyDore.Views"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="JimmyDore.Pages.CurtainsPage">
+    <ContentPage.Content>
+        <RelativeLayout>
+            <Image
+                Source="{ext:ImageResource JimmyDore.Images.jd-curtain.png}"
+                RelativeLayout.WidthConstraint=
+                "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint=
+                "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                Aspect="AspectFill"
+                Margin="0">
+            </Image>
+
+            <Image x:Name="ShowLogo"
+                Source="{ext:ImageResource JimmyDore.Images.jd-show-off.png}"
+                RelativeLayout.XConstraint=
+                    "{ConstraintExpression 
+                        Type=RelativeToParent,
+                        Property=Width, 
+                        Factor=0.5,
+                        Constant=-100}"
+                RelativeLayout.YConstraint=
+                    "{ConstraintExpression 
+                            Type=RelativeToParent,
+                            Property=Height,
+                            Factor=0.5,
+                            Constant=-100}"
+                WidthRequest="200" HeightRequest="200" >
+            </Image>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -7,60 +7,62 @@
              xmlns:view="clr-namespace:JimmyDore.Views"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="JimmyDore.Pages.LoadingPage"
-             BackgroundColor="{StaticResource staffblue}">
+             BackgroundColor="{StaticResource navBarBackgroundColour}">
     <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalOptions="FillAndExpand">
 
-            <view:LoadingView Grid.Row="0"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                HeightRequest="100"/>
+                    <Image Source="{ext:ImageResource JimmyDore.Images.jd-icon.png}"
+                           VerticalOptions="StartAndExpand"
+                           HorizontalOptions="Center"
+                           HeightRequest="120"
+                           WidthRequest="120"
+                           Margin="0,150,0,16" />
 
-            <StackLayout
-                Grid.Row="1"
-                Grid.Column="0"
-                VerticalOptions="FillAndExpand">
+                    <StackLayout
+                        VerticalOptions="Center"
+                        Orientation="Vertical">
 
-                <!--<StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding NoPassCardTappedCommand}"/>
-                </StackLayout.GestureRecognizers>-->
+                        <Label Text="{i18N:Translate StartOptionsLabel}"
+                               Padding="0,40,0,00"
+                               Style="{StaticResource tapToMessage}"/>
 
-                <!--<Label Text="{i18N:Translate ToStartLabel}"
-                   Style="{StaticResource tapToTitle}"/>-->
+                        <Button
+                            VerticalOptions="End" 
+                            Text="{i18N:Translate MemberAccess}"
+                            Margin="60,10,60,10"
+                            Command="{Binding MemberAccessCommand}"
+                            Style="{StaticResource materialButton}"/>
 
-                <Image Source="{ext:ImageResource JimmyDore.Images.jd-icon.png}"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,16" />
+                        <Button
+                            VerticalOptions="End" 
+                            Text="{i18N:Translate GuestAccess}"
+                            Margin="60,0,60,10"
+                            Command="{Binding GuestAccessCommand}"
+                            Style="{StaticResource materialButton}"/>
 
-                <Label Text="Sign In Options" Padding="0,40,0,00"
-                   Style="{StaticResource tapToMessage}"/>
+                    </StackLayout>
 
-                <Button
-                    VerticalOptions="End" 
-                    Text="{i18N:Translate MemberAccess}"
-                    Margin="60,10,60,10"
-                    Command="{Binding MemberAccessCommand}"
-                    Style="{StaticResource materialButton}"/>
+                    <!--
+                        IsVisible="{Binding IsBusy}"
+                    -->
 
-                <Button
-                    VerticalOptions="End" 
-                    Text="{i18N:Translate GuestAccess}"
-                    Margin="60,0,60,10"
-                    Command="{Binding GuestAccessCommand}"
-                    Style="{StaticResource materialButton}"/>
+                </StackLayout>
 
-                <!--<view:LoadingView HorizontalOptions="CenterAndExpand"
-                    
-                               HeightRequest="100"
-                               IsVisible="{Binding IsBusy}"
-                               Padding="0"/>-->
-
-            </StackLayout>
+                <view:LoadingView
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HeightRequest="50"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -13,17 +13,17 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 
-	<data name="ToStartLabel" xml:space="preserve">
+	<data name="StartWelcomeLabel" xml:space="preserve">
         <value>Welcome!</value>
     </data>
-    <data name="ToStartMessageLabel" xml:space="preserve">
-        <value></value>
+    <data name="StartOptionsLabel" xml:space="preserve">
+        <value>SIGN IN OPTIONS</value>
     </data>
     <data name="MemberAccess" xml:space="preserve">
-        <value>I have a memembership</value>
+        <value>I HAVE A MEMEMBERSHIP 🔒</value>
     </data>
     <data name="GuestAccess" xml:space="preserve">
-        <value>I'm a huge fan of the show</value>
+        <value>I'M A HUGE FAN OF THE SHOW</value>
     </data>
 
 </root>

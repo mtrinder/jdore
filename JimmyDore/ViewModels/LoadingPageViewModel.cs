@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using JimmyDore.Extensions;
 using JimmyDore.Pages;
 using JimmyDore.Services.DialogAlert;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 
@@ -10,6 +11,9 @@ namespace JimmyDore.ViewModels
 {
     public class LoadingPageViewModel : ViewModelBase
     {
+        DelegateCommand _accessMember;
+        DelegateCommand _accessGuest;
+
         public LoadingPageViewModel(INavigationService navigationService,
             IJimmyDoreDialogService dialogService,
             IEventAggregator eventAggregator) : base(navigationService, dialogService, eventAggregator)
@@ -21,9 +25,34 @@ namespace JimmyDore.ViewModels
             base.OnNavigatedTo(parameters);
             if (parameters.IsNewNavigation())
             {
-                await Task.Delay(2000);
-                //await NavigationService.NavigateAsync($"/{nameof(MainPage)}");
+                await Task.Yield();
             }
+        }
+
+        public DelegateCommand MemberAccessCommand => _accessMember ?? (_accessMember = new DelegateCommand(async () => await ExecuteTaskInLockAsync(OnPressMemeberAsync), CanExecute)
+            .ObservesProperty(() => IsBusy).ObservesProperty(() => IsLocked));
+
+        public DelegateCommand GuestAccessCommand => _accessGuest ?? (_accessGuest = new DelegateCommand(async () => await ExecuteTaskInLockAsync(OnPressGuestAsync), CanExecute)
+            .ObservesProperty(() => IsBusy).ObservesProperty(() => IsLocked));
+
+        private async Task OnPressGuestAsync()
+        {
+            await EnterAsGuestAsync();
+        }
+
+        private async Task OnPressMemeberAsync()
+        {
+            await EnterAsMemberAsync();
+        }
+
+        private async Task EnterAsGuestAsync()
+        {
+            await NavigationService.NavigateAsync($"/{nameof(MainPage)}");
+        }
+
+        private async Task EnterAsMemberAsync()
+        {
+            await NavigationService.NavigateAsync($"/{nameof(MainPage)}");
         }
     }
 }

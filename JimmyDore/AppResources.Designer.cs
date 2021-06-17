@@ -47,15 +47,15 @@ namespace JimmyDore {
             }
         }
         
-        internal static string ToStartLabel {
+        internal static string StartWelcomeLabel {
             get {
-                return ResourceManager.GetString("ToStartLabel", resourceCulture);
+                return ResourceManager.GetString("StartWelcomeLabel", resourceCulture);
             }
         }
         
-        internal static string ToStartMessageLabel {
+        internal static string StartOptionsLabel {
             get {
-                return ResourceManager.GetString("ToStartMessageLabel", resourceCulture);
+                return ResourceManager.GetString("StartOptionsLabel", resourceCulture);
             }
         }
         

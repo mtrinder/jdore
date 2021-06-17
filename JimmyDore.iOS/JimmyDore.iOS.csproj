@@ -94,6 +94,15 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-83.5%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-marketing-1024x1024.png" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\jd-show.imageset\jd-show.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\jd-show.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\jd-comedy-com.imageset\jd-comedy-com.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\jd-comedy-com.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\jd-megaphone.imageset\jd-megaphone.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\jd-megaphone.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\jd-show-words.imageset\jd-show-words.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\jd-show-words.imageset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -137,7 +146,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="splash.jpg" />
-    <BundleResource Include="profile-icon.json" />
+    <BundleResource Include="thumb-icon.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JimmyDore\JimmyDore.csproj">
