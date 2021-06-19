@@ -25,7 +25,9 @@ namespace JimmyDore.ViewModels
             base.OnNavigatedTo(parameters);
             if (parameters.IsNewNavigation())
             {
-                await Task.Yield();
+#if DEBUG
+                await NavigationService.NavigateAsync($"/{nameof(RootTabPage)}");
+#endif
             }
         }
 
@@ -47,12 +49,12 @@ namespace JimmyDore.ViewModels
 
         private async Task EnterAsGuestAsync()
         {
-            await NavigationService.NavigateAsync($"/{nameof(MainPage)}");
+            await NavigationService.NavigateAsync($"/{nameof(RootTabPage)}");
         }
 
         private async Task EnterAsMemberAsync()
         {
-            await NavigationService.NavigateAsync($"/{nameof(MainPage)}");
+            await NavigationService.NavigateAsync($"/{nameof(RootTabPage)}");
         }
     }
 }

@@ -4,7 +4,7 @@ using Prism.Events;
 
 namespace JimmyDore.Event
 {
-    class AppLifecycleEvent : PubSubEvent<AppLifecycleState>
+    public class AppLifecycleEvent : PubSubEvent<AppLifecycleState>
     {
 
     }

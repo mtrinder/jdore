@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:ext="clr-namespace:JimmyDore.Extensions"
+            xmlns:pages="clr-namespace:JimmyDore.Pages"
+            x:Class="JimmyDore.Pages.RootTabPage"
+            BarTextColor="{StaticResource darkGrey}"
+            SelectedTabColor="{StaticResource redText}"
+            Title="myki" >
+
+    <!--<NavigationPage.TitleView>
+        <pages:LightNavigationBarTitleView/>
+    </NavigationPage.TitleView>-->
+
+    <TabbedPage.Children>
+        <pages:MainPage Title="Home" IconImageSource="{ext:ImageResource JimmyDore.Images.youtube-button.png}"/>
+        <pages:MainPage Title="News" IconImageSource="{ext:ImageResource JimmyDore.Images.news-button.png}"/>
+        <pages:MainPage Title="Shows" IconImageSource="{ext:ImageResource JimmyDore.Images.live-button.png}"/>
+        <pages:MainPage Title="Favorites" IconImageSource="{ext:ImageResource JimmyDore.Images.fav-button.png}"/>
+     </TabbedPage.Children>
+</TabbedPage>

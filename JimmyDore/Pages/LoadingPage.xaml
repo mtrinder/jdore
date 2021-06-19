@@ -28,7 +28,7 @@
                            Margin="0,150,0,16" />
 
                     <StackLayout
-                        VerticalOptions="Center"
+                        VerticalOptions="StartAndExpand"
                         Orientation="Vertical">
 
                         <Label Text="{i18N:Translate StartOptionsLabel}"

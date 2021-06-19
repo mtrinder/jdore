@@ -53,6 +53,12 @@
     <None Remove="Images\jd-show-off.png" />
     <None Remove="Images\jd-show-words.png" />
     <None Remove="Images\jd-show.png" />
+    <None Remove="Images\youtube.png" />
+    <None Remove="Images\home-button.png" />
+    <None Remove="Images\youtube-button.png" />
+    <None Remove="Images\live-button.png" />
+    <None Remove="Images\news-button.png" />
+    <None Remove="Images\fav-button.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />
@@ -61,16 +67,16 @@
     <EmbeddedResource Include="Images\jd-show-off.png" />
     <EmbeddedResource Include="Images\jd-show-words.png" />
     <EmbeddedResource Include="Images\jd-show.png" />
+    <EmbeddedResource Include="Images\home-button.png" />
+    <EmbeddedResource Include="Images\youtube-button.png" />
+    <EmbeddedResource Include="Images\live-button.png" />
+    <EmbeddedResource Include="Images\news-button.png" />
+    <EmbeddedResource Include="Images\fav-button.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="AppResources.Designer.cs">
-      <DependentUpon>AppResources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 </Project>

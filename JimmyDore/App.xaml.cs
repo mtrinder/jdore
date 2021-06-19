@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
 using DryIoc;
 using JimmyDore.Enums;
 using JimmyDore.Event;
 using JimmyDore.Pages;
 using JimmyDore.ViewModels;
-using JimmyDore.Services;
 using Prism;
-using Prism.Common;
 using Prism.DryIoc;
 using Prism.Events;
 using Prism.Ioc;
-using Prism.Navigation;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using JimmyDore.Services.DialogAlert;
 using JimmyDore.Services.Localise;
 
@@ -49,8 +41,11 @@ namespace JimmyDore
 
             try
             {
-                //await NavigationService.NavigateAsync($"{nameof(CurtainsPage)}");
+#if !DEBUG
+                await NavigationService.NavigateAsync($"{nameof(CurtainsPage)}");
+#else
                 await NavigationService.NavigateAsync($"{nameof(LoadingPage)}");
+#endif
             }
             catch (Exception ex)
             {
@@ -62,6 +57,7 @@ namespace JimmyDore
         {
             containerRegistry.RegisterSingleton<IJimmyDoreDialogService, JimmyDoreDialogService>();
 
+            containerRegistry.RegisterForNavigation<RootTabPage, RootTabPageViewModel>();
             containerRegistry.RegisterForNavigation<CurtainsPage, CurtainsPageViewModel>();
             containerRegistry.RegisterForNavigation<LoadingPage, LoadingPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
