@@ -11,6 +11,9 @@ using Prism.Events;
 using Prism.Ioc;
 using Xamarin.Forms;
 using View = Android.Views.View;
+using Plugin.FirebasePushNotification;
+using Android.Content;
+using System.Collections.Generic;
 
 namespace JimmyDore.Droid
 {
@@ -30,6 +33,48 @@ namespace JimmyDore.Droid
 
             base.OnCreate(savedInstanceState);
 
+            // Set the default notification channel for your app when running Android Oreo
+ 
+            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
+            {
+                //Change for your default notification channel id here
+                FirebasePushNotificationManager.DefaultNotificationChannelId = "DefaultChannel";
+
+                //Change for your default notification channel name here
+                FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
+            }
+
+            //If debug you should reset the token each time.
+#if DEBUG
+            FirebasePushNotificationManager.Initialize(this, new NotificationUserCategory[]
+            {
+            new NotificationUserCategory("message",new List<NotificationUserAction> {
+                new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground),
+                new NotificationUserAction("Forward","Forward",NotificationActionType.Foreground)
+
+            }),
+            new NotificationUserCategory("request",new List<NotificationUserAction> {
+                new NotificationUserAction("Accept","Accept",NotificationActionType.Default,"check"),
+                new NotificationUserAction("Reject","Reject",NotificationActionType.Default,"cancel")
+            })
+
+            }, true);
+#else
+	            FirebasePushNotificationManager.Initialize(this,new NotificationUserCategory[]
+		    {
+			new NotificationUserCategory("message",new List<NotificationUserAction> {
+			    new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground),
+			    new NotificationUserAction("Forward","Forward",NotificationActionType.Foreground)
+
+			}),
+			new NotificationUserCategory("request",new List<NotificationUserAction> {
+			    new NotificationUserAction("Accept","Accept",NotificationActionType.Default,"check"),
+			    new NotificationUserAction("Reject","Reject",NotificationActionType.Default,"cancel")
+			})
+
+		    },false);
+#endif
+
             // Disable fast renderers due to crash in release mode
             Forms.SetFlags("UseLegacyRenderers");
 
@@ -46,6 +91,11 @@ namespace JimmyDore.Droid
             _eventAggregator = app.Container.Resolve<IEventAggregator>();
 
             LoadApplication(app);
+
+            FirebasePushNotificationManager.IconResource = Resource.Mipmap.launcher_foreground;
+            FirebasePushNotificationManager.LargeIconResource = Resource.Mipmap.launcher_foreground;
+
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -53,6 +103,16 @@ namespace JimmyDore.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+
+            FirebasePushNotificationManager.IconResource = Resource.Mipmap.launcher_foreground;
+            FirebasePushNotificationManager.LargeIconResource = Resource.Mipmap.launcher_foreground;
+
+            FirebasePushNotificationManager.ProcessIntent(this, intent);
         }
     }
 }

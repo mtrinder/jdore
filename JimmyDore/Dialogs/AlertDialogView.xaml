@@ -19,8 +19,7 @@
               BackgroundColor="{StaticResource white}"
               HorizontalOptions="CenterAndExpand"
               Spacing="5"
-              VerticalOptions="CenterAndExpand"
-              >
+              VerticalOptions="CenterAndExpand">
               <Label
                   x:Name="TitleLabel"
                   Margin="20,20,20,0"
@@ -40,7 +39,7 @@
                       Grid.Column="1"
                       BackgroundColor="Transparent"
                       Text="Cancel"
-                      TextColor="{StaticResource purpleText}"
+                      TextColor="{StaticResource defaultText}"
                       FontAttributes="Bold"
                       Clicked="OnCancelButtonClicked">
                   </Button>
@@ -49,7 +48,7 @@
                       Grid.Column="2"
                       BackgroundColor="Transparent"
                       Text="OK"
-                      TextColor="{StaticResource purpleText}"
+                      TextColor="{StaticResource defaultText}"
                       FontAttributes="Bold"
                       Clicked="OnAcceptButtonClicked">
 

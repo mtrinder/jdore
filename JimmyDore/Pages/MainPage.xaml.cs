@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Plugin.FirebasePushNotification;
 using Xamarin.Forms;
 
 namespace JimmyDore.Pages
@@ -10,6 +10,11 @@ namespace JimmyDore.Pages
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
         }
     }
 }

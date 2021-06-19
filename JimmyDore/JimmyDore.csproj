@@ -22,6 +22,7 @@
     <PackageReference Include="NControl" Version="0.9.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />

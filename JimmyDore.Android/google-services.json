@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "445460596305",
+    "project_id": "jimmy-dore-show-21b38",
+    "storage_bucket": "jimmy-dore-show-21b38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445460596305:android:7faf7692baab14072c9a70",
+        "android_client_info": {
+          "package_name": "com.zapzapz.jimmydore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445460596305-u946kcln2d5pmjv63icjld4siddiufol.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zapzapz.jimmydore",
+            "certificate_hash": "8591c768c2efeb5969ab0ed119da465056d8b19a"
+          }
+        },
+        {
+          "client_id": "445460596305-193rd47ln0guher5auotonhl06kvslad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc8kBt04uq-BxotaM1ZI-MeBqOkSvhC6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445460596305-193rd47ln0guher5auotonhl06kvslad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

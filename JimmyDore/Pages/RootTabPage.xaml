@@ -14,8 +14,8 @@
 
     <TabbedPage.Children>
         <pages:MainPage Title="Home" IconImageSource="{ext:ImageResource JimmyDore.Images.youtube-button.png}"/>
-        <pages:MainPage Title="News" IconImageSource="{ext:ImageResource JimmyDore.Images.news-button.png}"/>
+        <!--<pages:MainPage Title="News" IconImageSource="{ext:ImageResource JimmyDore.Images.news-button.png}"/>
         <pages:MainPage Title="Shows" IconImageSource="{ext:ImageResource JimmyDore.Images.live-button.png}"/>
-        <pages:MainPage Title="Favorites" IconImageSource="{ext:ImageResource JimmyDore.Images.fav-button.png}"/>
+        <pages:MainPage Title="Favorites" IconImageSource="{ext:ImageResource JimmyDore.Images.fav-button.png}"/>-->
      </TabbedPage.Children>
 </TabbedPage>

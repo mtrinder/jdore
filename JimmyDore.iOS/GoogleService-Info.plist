@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>445460596305-hku01i234m80ii885djlipdkv4n4qmq0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.445460596305-hku01i234m80ii885djlipdkv4n4qmq0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>445460596305-u946kcln2d5pmjv63icjld4siddiufol.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAKMoR643x8Q7w0VJc9TKAe8mF53MkGkcM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>445460596305</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.zapzapz.jimmydore</string>
+	<key>PROJECT_ID</key>
+	<string>jimmy-dore-show-21b38</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jimmy-dore-show-21b38.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:445460596305:ios:83e1f77f102cc3aa2c9a70</string>
+</dict>
+</plist>

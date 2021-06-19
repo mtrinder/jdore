@@ -12,6 +12,8 @@ using Prism.Events;
 using Prism.Ioc;
 using JimmyDore.Services.DialogAlert;
 using JimmyDore.Services.Localise;
+using Plugin.FirebasePushNotification;
+using Xamarin.Forms;
 
 namespace JimmyDore
 {
@@ -28,16 +30,15 @@ namespace JimmyDore
         protected override async void OnInitialized()
         {
 #if !DEBUG
-            var stream = GetStreamFromFile("Sounds.jimmydore.mp3");
-            var audio = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-            audio.Load(stream);
-            audio.Play();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                PlayBells();
+            });
 #endif
             _eventAggregator = Container.Resolve<IEventAggregator>();
 
             InitializeComponent();
             SetLocalisation();
-
 
             try
             {
@@ -51,6 +52,62 @@ namespace JimmyDore
             {
                 Console.WriteLine(ex);
             }
+
+            CrossFirebasePushNotification.Current.Subscribe("general");
+
+            CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
+            {
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine($"TOKEN : {p.Token}");
+#endif
+            };
+
+            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            {
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine("Received");
+#endif
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    PlayBells();
+
+                    //IJimmyDoreDialogService DialogService;
+                    //DialogService = Container.Resolve<IJimmyDoreDialogService>();
+                    //await DialogService.DisplayAlertWithOk("The Jimmy Dore Show", "We are now live on YouTube!");
+                });
+            };
+
+            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            {
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine("Opened");
+                foreach (var data in p.Data)
+                {
+                    System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+                }
+#endif
+
+                //Device.BeginInvokeOnMainThread(() =>
+                //{
+                //    PlayBells();
+                //});
+            };
+
+            CrossFirebasePushNotification.Current.OnNotificationAction += (s, p) =>
+            {
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine("Action");
+
+                if (!string.IsNullOrEmpty(p.Identifier))
+                {
+                    System.Diagnostics.Debug.WriteLine($"ActionId: {p.Identifier}");
+                    foreach (var data in p.Data)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
+                    }
+                }
+#endif
+            };
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -88,7 +145,7 @@ namespace JimmyDore
             return stream;
         }
 
-        private void SetLocalisation()
+        void SetLocalisation()
         {
             // This lookup NOT required for Windows platforms - the Culture will be automatically set
             if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS || Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android)
@@ -99,6 +156,14 @@ namespace JimmyDore
                 AppResources.Culture = ci;
                 localise.SetLocale(ci);
             }
+        }
+
+        void PlayBells()
+        {
+            var stream = GetStreamFromFile("Sounds.jimmydore.mp3");
+            var audio = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            audio.Load(stream);
+            audio.Play();
         }
     }
 }
