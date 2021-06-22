@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:JimmyDore.Extensions"
+    x:Class="JimmyDore.Views.PlaybackNavigationBarView">
+    <ContentView.Content>
+        <Grid Margin="0,0,0,0" BackgroundColor="{StaticResource darkGrey}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="46"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="46"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+            </Grid.RowDefinitions>
+
+            <Frame Padding="0"
+                 BackgroundColor="Transparent"
+                 BorderColor="Transparent"
+                 Grid.Column="0">
+                <Image Source="{ext:ImageResource JimmyDore.Images.circle-down.png}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           Margin="0" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <StackLayout 
+              Grid.Column="1"
+              Margin="0"
+              Padding="0"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="Center">
+                <Label Text="{Binding PageTitle}"
+                     Style="{StaticResource darkNavBarTitleView}" />
+            </StackLayout>
+
+            <Frame Padding="0"
+                 BackgroundColor="Transparent"
+                 BorderColor="Transparent"
+                 Grid.Column="2">
+                <Image Source="{ext:ImageResource JimmyDore.Images.action-out.png}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           Margin="0" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateOutCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

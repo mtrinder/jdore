@@ -12,9 +12,11 @@ namespace JimmyDore.Pages
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            Device.BeginInvokeOnMainThread(() => VideoList.SelectedItem = null);
         }
     }
 }

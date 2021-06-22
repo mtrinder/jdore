@@ -23,6 +23,7 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
+    <PackageReference Include="Plugin.SegmentedControl.Netstandard" Version="5.4.5" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -39,6 +40,8 @@
     <Folder Include="Dialogs\" />
     <Folder Include="Converters\" />
     <Folder Include="Images\" />
+    <Folder Include="Models\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="MainPage.xaml.cs" />
@@ -60,6 +63,11 @@
     <None Remove="Images\live-button.png" />
     <None Remove="Images\news-button.png" />
     <None Remove="Images\fav-button.png" />
+    <None Remove="Images\chevron_back.png" />
+    <None Remove="Images\close-round-line.png" />
+    <None Remove="Images\action-out.png" />
+    <None Remove="Images\circle-down.png" />
+    <None Remove="Images\settings-button.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />
@@ -73,6 +81,10 @@
     <EmbeddedResource Include="Images\live-button.png" />
     <EmbeddedResource Include="Images\news-button.png" />
     <EmbeddedResource Include="Images\fav-button.png" />
+    <EmbeddedResource Include="Images\close-round-line.png" />
+    <EmbeddedResource Include="Images\action-out.png" />
+    <EmbeddedResource Include="Images\circle-down.png" />
+    <EmbeddedResource Include="Images\settings-button.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

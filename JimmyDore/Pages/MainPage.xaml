@@ -1,9 +1,135 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="JimmyDore.Pages.MainPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             xmlns:control="clr-namespace:Plugin.Segmented.Control;assembly=Plugin.Segmented"
+             xmlns:i18N="clr-namespace:JimmyDore.Markup"
+             xmlns:ext="clr-namespace:JimmyDore.Extensions"
+             xmlns:view="clr-namespace:JimmyDore.Views"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="Videos"
+             x:Class="JimmyDore.Pages.MainPage">
+
+    <ContentPage.Resources>
+        <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Serif"></On>
+            <On Platform="iOS" Value="Helvetica"></On>
+        </OnPlatform>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        
+        <Grid BackgroundColor="AliceBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="0"
+                Orientation="Horizontal"
+                BackgroundColor="{StaticResource darkblue}"
+                VerticalOptions="FillAndExpand">
+
+                <Image Source="{ext:ImageResource JimmyDore.Images.jd-icon.png}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Margin="30,50,0,20" />
+
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="CenterAndExpand">
+
+                    <Label Style="{StaticResource pageTitle}"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalTextAlignment="End"
+                           HorizontalTextAlignment="Start"
+                           FontSize="Large"
+                           Padding="0,20,0,0"
+                           Text="YouTube Videos" />
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0,0,0,0"
+                                 VerticalOptions="FillAndExpand">
+                        <Label Style="{StaticResource pageTitle}"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Start"
+                               HorizontalTextAlignment="Start"
+                               Margin="0,3,0,0"
+                               FontSize="Small"
+                               Text="View my channel here" />
+
+                        <Button Style="{StaticResource pageTitle}"
+                                VerticalOptions="Start"
+                                HorizontalOptions="EndAndExpand"
+                                Command="{Binding OnYouTubeButtonPress}"
+                                FontSize="Large"
+                                HeightRequest="25"
+                                WidthRequest="30"
+                                BackgroundColor="Red"
+                                ImageSource="{ext:ImageResource JimmyDore.Images.youtube-button.png}" />
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <control:SegmentedControl 
+                BackgroundColor="{StaticResource white}"
+                Grid.Row="1" Grid.Column="0"
+                SelectedSegment="{Binding SelectedSegment, Mode=TwoWay}"
+                ItemsSource="{Binding SegmentStringSource}"
+                SelectedTextColor="White"
+                TextColor="Black"
+                TintColor="{StaticResource darkblue}"
+                DisabledColor="Gray"
+                BorderColor="White"
+                BorderWidth="1"
+                FontSize="Small"
+                FontFamily="{StaticResource PlatformFontName}"
+                Margin="4">
+                <control:SegmentedControl.Children>
+                    <control:SegmentedControlOption Text="All Videos"/>
+                    <control:SegmentedControlOption Text="Editorial"/>
+                    <control:SegmentedControlOption Text="Funny"/>
+                </control:SegmentedControl.Children>
+            </control:SegmentedControl>
+
+            <ListView Grid.Row="2" x:Name="VideoList"
+                      Grid.Column="0"
+                      IsVisible="{Binding ShowList}"
+                      HasUnevenRows="True"
+                      SelectionMode="Single"
+                      BackgroundColor="AliceBlue"
+                      RefreshControlColor="{StaticResource darkblue}"
+                      IsPullToRefreshEnabled="True"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      RefreshCommand="{Binding ListRefreshCommand}"
+                      SelectedItem="{Binding VideoSelected, Mode=TwoWay}"
+                      SeparatorColor="{StaticResource darkblue}"
+                      ItemsSource="{Binding Videos}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <StackLayout BackgroundColor="AliceBlue" Orientation="Vertical" >
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="5">
+                                    <StackLayout BackgroundColor="AliceBlue" Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Image Margin="2" VerticalOptions="Center" WidthRequest="100" HeightRequest="60" Source="{Binding Link}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Views}" FontSize="Micro" HorizontalOptions="End"
+                                            TextColor="Gray" Margin="0,0,5,0" VerticalOptions="Start" HorizontalTextAlignment="End" />
+                                        <Label Text="{Binding Title}" FontSize="Medium" HorizontalOptions="FillAndExpand"
+                                            TextColor="{Binding Color, Mode=TwoWay}" Padding="10,0,5,5" VerticalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

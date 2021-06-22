@@ -14,6 +14,8 @@ using JimmyDore.Services.DialogAlert;
 using JimmyDore.Services.Localise;
 using Plugin.FirebasePushNotification;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace JimmyDore
 {
@@ -29,7 +31,7 @@ namespace JimmyDore
 
         protected override async void OnInitialized()
         {
-#if !DEBUG
+#if DEBUG
             Device.BeginInvokeOnMainThread(() =>
             {
                 PlayBells();
@@ -42,7 +44,7 @@ namespace JimmyDore
 
             try
             {
-#if !DEBUG
+#if DEBUG
                 await NavigationService.NavigateAsync($"{nameof(CurtainsPage)}");
 #else
                 await NavigationService.NavigateAsync($"{nameof(LoadingPage)}");
@@ -75,6 +77,8 @@ namespace JimmyDore
                     //DialogService = Container.Resolve<IJimmyDoreDialogService>();
                     //await DialogService.DisplayAlertWithOk("The Jimmy Dore Show", "We are now live on YouTube!");
                 });
+
+                
             };
 
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
@@ -115,9 +119,20 @@ namespace JimmyDore
             containerRegistry.RegisterSingleton<IJimmyDoreDialogService, JimmyDoreDialogService>();
 
             containerRegistry.RegisterForNavigation<RootTabPage, RootTabPageViewModel>();
+
+            // start
             containerRegistry.RegisterForNavigation<CurtainsPage, CurtainsPageViewModel>();
             containerRegistry.RegisterForNavigation<LoadingPage, LoadingPageViewModel>();
+
+            // tabs
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<NewsPage, NewsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ShowsPage, ShowsPageViewModel>();
+            containerRegistry.RegisterForNavigation<FavoritesPage, FavoritesPageViewModel>();
+
+            // navigation
+            containerRegistry.RegisterForNavigation<PlayVideoPage, PlayVideoViewModel>();
+
         }
 
         protected override void OnStart()

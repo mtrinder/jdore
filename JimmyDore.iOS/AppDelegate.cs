@@ -28,24 +28,28 @@ namespace JimmyDore.iOS
 
             NControlViewRenderer.Init();
 
+            Plugin.Segmented.Control.iOS.SegmentedControlRenderer.Initialize();
+
             Rg.Plugins.Popup.Popup.Init();
 
             LoadApplication(_app = new App(new iOSInitializer()));
 
-            FirebasePushNotificationManager.Initialize(options, new NotificationUserCategory[]
+            if (ObjCRuntime.Runtime.Arch == ObjCRuntime.Arch.DEVICE)
             {
-                new NotificationUserCategory("message",new List<NotificationUserAction> {
-                    new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground)
-                }),
-                new NotificationUserCategory("request",new List<NotificationUserAction> {
-                    new NotificationUserAction("Accept","Accept"),
-                    new NotificationUserAction("Reject","Reject",NotificationActionType.Destructive)
-                })
+                FirebasePushNotificationManager.Initialize(options, new NotificationUserCategory[]
+                {
+                    new NotificationUserCategory("message",new List<NotificationUserAction> {
+                        new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground)
+                    }),
+                    new NotificationUserCategory("request",new List<NotificationUserAction> {
+                        new NotificationUserAction("Accept","Accept"),
+                        new NotificationUserAction("Reject","Reject",NotificationActionType.Destructive)
+                    })
+                });
 
-            });
-
-            FirebasePushNotificationManager.CurrentNotificationPresentationOption =
-                 UserNotifications.UNNotificationPresentationOptions.Alert | UserNotifications.UNNotificationPresentationOptions.Sound;
+                FirebasePushNotificationManager.CurrentNotificationPresentationOption =
+                     UserNotifications.UNNotificationPresentationOptions.Alert | UserNotifications.UNNotificationPresentationOptions.Sound;
+            }
 
             _eventAggregator = _app.Container.Resolve<IEventAggregator>();
 

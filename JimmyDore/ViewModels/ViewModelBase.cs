@@ -42,12 +42,6 @@ namespace JimmyDore.ViewModels
             //LoggingService = loggingService;
         }
 
-#if DEBUG
-        public bool DisplayDebug { get; } = true;
-#else   
-        public bool DisplayDebug { get; } = false;
-#endif
-
         public string PageTitle
         {
             get => _pageTitle;

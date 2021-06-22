@@ -4,10 +4,10 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:i18N="clr-namespace:JimmyDore.Markup"
              xmlns:ext="clr-namespace:JimmyDore.Extensions"
-             xmlns:view="clr-namespace:JimmyDore.Views"
+             xmlns:views="clr-namespace:JimmyDore.Views"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="JimmyDore.Pages.LoadingPage"
-             BackgroundColor="{StaticResource navBarBackgroundColour}">
+             BackgroundColor="{StaticResource white}">
     <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
     <ContentPage.Content>
         <Grid>
@@ -57,7 +57,7 @@
 
                 </StackLayout>
 
-                <view:LoadingView
+                <views:LoadingView
                     Grid.Row="1"
                     Grid.Column="0"
                     HeightRequest="50"

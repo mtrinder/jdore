@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:JimmyDore.Controls;assembly=JimmyDore"
+    xmlns:ext="clr-namespace:JimmyDore.Extensions"
+    x:Class="JimmyDore.Views.NavigationBarView">
+    <ContentView.Content>
+        <Grid Margin="0,0,0,0" BackgroundColor="{StaticResource darkGrey}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="46"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+            </Grid.RowDefinitions>
+
+            <Frame Padding="0"
+                 BackgroundColor="Transparent"
+                 BorderColor="Transparent"
+                 Grid.Column="0">
+                <Image Source="{ext:ImageResource JimmyDore.Images.close-round-line.png}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           Margin="0" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateBackCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <StackLayout 
+              Grid.Column="1"
+              Margin="0"
+              Padding="0"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="Center">
+                <Label Text="{Binding PageTitle}"
+                     Style="{StaticResource darkNavBarTitleView}" />
+
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

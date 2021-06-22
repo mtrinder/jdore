@@ -92,6 +92,7 @@ namespace JimmyDore.Extensions
 
     internal enum NavigationParameterKeys
     {
+        VideoId
     }
 
 }
