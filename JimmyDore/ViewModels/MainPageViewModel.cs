@@ -66,7 +66,8 @@ namespace JimmyDore.ViewModels
             set => SetProperty(ref _videoSelected, value, OnVideoTapped);
         }
 
-        public string[] SegmentStringSource => new[] { "All Videos", "Editorial", "Comedy" };
+        //public string[] SegmentStringSource => new[] { "All Videos", "Editorial", "Comedy" };
+        public string[] SegmentStringSource => new[] { "All Videos", "The Funny Ones" };
 
         async void OnVideoTapped()
         {
@@ -113,7 +114,9 @@ namespace JimmyDore.ViewModels
                     IsRefreshing = true;
                 }
 
-                var key = "";
+                var key = "8UTfMLgMdJqFcU4J5GqU7Dd2YcmW3TpHAySazIA";
+
+                key = new string(key.ToCharArray().Reverse().ToArray());
 
                 var result = await httpClient.GetStringAsync($"https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=UU3M7l8ved_rYQ45AVzS0RGA&key={key}");
 
@@ -191,10 +194,10 @@ namespace JimmyDore.ViewModels
 
             switch (_selectedSegment)
             {
+                //case 1:
+                //    vids = _videosResult.Items.Where(x => !x.Snippet.Description.Contains("Performed by Mike MacRae")).ToList();
+                //    break;
                 case 1:
-                    vids = _videosResult.Items.Where(x => !x.Snippet.Description.Contains("Performed by Mike MacRae")).ToList();
-                    break;
-                case 2:
                     vids = _videosResult.Items.Where(x => x.Snippet.Description.Contains("Performed by Mike MacRae")).ToList();
                     break;
             }
