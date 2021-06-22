@@ -113,7 +113,9 @@ namespace JimmyDore.ViewModels
                     IsRefreshing = true;
                 }
 
-                var result = await httpClient.GetStringAsync("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=UU3M7l8ved_rYQ45AVzS0RGA&key=AIzaSyBhgYXnsRrKfbgDBabmGUjzf8Wt-AtcZLo");
+                var key = "";
+
+                var result = await httpClient.GetStringAsync($"https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=UU3M7l8ved_rYQ45AVzS0RGA&key={key}");
 
                 _videosResult = JsonConvert.DeserializeObject<YouTubeResult>(result);
 
@@ -125,7 +127,7 @@ namespace JimmyDore.ViewModels
                         {
                             foreach (var item in _videosResult.Items)
                             {
-                                result = await httpClient.GetStringAsync($"https://youtube.googleapis.com/youtube/v3/videos?part=statistics&id={item.Snippet.ResourceId.VideoId}&key=AIzaSyBhgYXnsRrKfbgDBabmGUjzf8Wt-AtcZLo");
+                                result = await httpClient.GetStringAsync($"https://youtube.googleapis.com/youtube/v3/videos?part=statistics&id={item.Snippet.ResourceId.VideoId}&key={key}");
 
                                 var stats = JsonConvert.DeserializeObject<VideoResult>(result);
 
