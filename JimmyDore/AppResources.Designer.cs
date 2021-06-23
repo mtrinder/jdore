@@ -70,5 +70,11 @@ namespace JimmyDore {
                 return ResourceManager.GetString("GuestAccess", resourceCulture);
             }
         }
+        
+        internal static string LiveShows {
+            get {
+                return ResourceManager.GetString("LiveShows", resourceCulture);
+            }
+        }
     }
 }

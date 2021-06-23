@@ -1,9 +1,68 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:i18N="clr-namespace:JimmyDore.Markup"
+             xmlns:ext="clr-namespace:JimmyDore.Extensions"
+             xmlns:views="clr-namespace:JimmyDore.Views"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             BackgroundColor="{StaticResource white}"
+             Title="Favorites"
     x:Class="JimmyDore.Pages.FavoritesPage">
+    <ContentPage.Resources>
+        <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Serif"></On>
+            <On Platform="iOS" Value="Helvetica"></On>
+        </OnPlatform>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        
+        <Grid BackgroundColor="AliceBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="0"
+                Orientation="Horizontal"
+                BackgroundColor="{StaticResource warning}"
+                VerticalOptions="FillAndExpand">
+
+                <Image Source="{ext:ImageResource JimmyDore.Images.jd-favorites.png}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Margin="30,50,0,20" /> 
+
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="CenterAndExpand">
+                    <Label Style="{StaticResource pageTitle}"
+                           VerticalOptions="End"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           FontSize="Large"
+                           Padding="0,70,0,0"
+                           Text="My Favorite" />
+
+                    <StackLayout Orientation="Horizontal" 
+                                 VerticalOptions="FillAndExpand">
+                        <Label Style="{StaticResource pageTitle}"
+                               VerticalOptions="StartAndExpand"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"
+                               Margin="0" FontSize="Small"
+                               Text="Progressives on YouTube" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="FillAndExpand"
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         VerticalOptions="FillAndExpand">
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

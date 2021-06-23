@@ -25,5 +25,8 @@
     <data name="GuestAccess" xml:space="preserve">
         <value>I'M A HUGE FAN OF THE SHOW</value>
     </data>
+    <data name="LiveShows" xml:space="preserve">
+        <value>CHECK NOW</value>
+    </data>
 
 </root>

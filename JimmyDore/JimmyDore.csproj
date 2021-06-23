@@ -76,6 +76,9 @@
     <None Remove="Video\jimmydore-liveshows.mp4" />
     <None Remove="Service\YouTube\" />
     <None Remove="Refractored.MvvmHelpers" />
+    <None Remove="Images\jd-liveshows.png" />
+    <None Remove="Images\jd-favorites.png" />
+    <None Remove="Images\jd-settings.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />
@@ -95,11 +98,19 @@
     <EmbeddedResource Include="Images\settings-button.png" />
     <EmbeddedResource Include="Sounds\jimmydore-ending.mp3" />
     <EmbeddedResource Include="Video\jimmydore-liveshows.mp4" />
+    <EmbeddedResource Include="Images\jd-liveshows.png" />
+    <EmbeddedResource Include="Images\jd-favorites.png" />
+    <EmbeddedResource Include="Images\jd-settings.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
