@@ -25,9 +25,9 @@ namespace JimmyDore.ViewModels
             base.OnNavigatedTo(parameters);
             if (parameters.IsNewNavigation())
             {
-#if !DEBUG
+//#if !DEBUG
                 await NavigationService.NavigateAsync($"/{nameof(RootTabPage)}");
-#endif
+//#endif
             }
         }
 

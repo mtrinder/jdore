@@ -16,6 +16,7 @@ using Plugin.FirebasePushNotification;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using JimmyDore.Service.YouTube;
 
 namespace JimmyDore
 {
@@ -31,24 +32,22 @@ namespace JimmyDore
 
         protected override async void OnInitialized()
         {
-#if DEBUG
             Device.BeginInvokeOnMainThread(() =>
             {
                 PlayBells();
             });
-#endif
+
             _eventAggregator = Container.Resolve<IEventAggregator>();
 
             InitializeComponent();
+
             SetLocalisation();
 
             try
             {
-#if DEBUG
+                Device.BeginInvokeOnMainThread(async () => await Container.Resolve<IYouTubeService>().GetJimmysVideos(true));
+
                 await NavigationService.NavigateAsync($"{nameof(CurtainsPage)}");
-#else
-                await NavigationService.NavigateAsync($"{nameof(LoadingPage)}");
-#endif
             }
             catch (Exception ex)
             {
@@ -90,11 +89,6 @@ namespace JimmyDore
                     System.Diagnostics.Debug.WriteLine($"{data.Key} : {data.Value}");
                 }
 #endif
-
-                //Device.BeginInvokeOnMainThread(() =>
-                //{
-                //    PlayBells();
-                //});
             };
 
             CrossFirebasePushNotification.Current.OnNotificationAction += (s, p) =>
@@ -116,13 +110,14 @@ namespace JimmyDore
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // service
+            containerRegistry.RegisterSingleton<IYouTubeService, YouTubeService>();
             containerRegistry.RegisterSingleton<IJimmyDoreDialogService, JimmyDoreDialogService>();
-
-            containerRegistry.RegisterForNavigation<RootTabPage, RootTabPageViewModel>();
 
             // start
             containerRegistry.RegisterForNavigation<CurtainsPage, CurtainsPageViewModel>();
             containerRegistry.RegisterForNavigation<LoadingPage, LoadingPageViewModel>();
+            containerRegistry.RegisterForNavigation<RootTabPage, RootTabPageViewModel>();
 
             // tabs
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
@@ -132,7 +127,6 @@ namespace JimmyDore
 
             // navigation
             containerRegistry.RegisterForNavigation<PlayVideoPage, PlayVideoViewModel>();
-
         }
 
         protected override void OnStart()

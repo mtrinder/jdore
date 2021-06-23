@@ -80,7 +80,7 @@
                 BackgroundColor="{StaticResource white}"
                 Grid.Row="1" Grid.Column="0"
                 SelectedSegment="{Binding SelectedSegment, Mode=TwoWay}"
-                ItemsSource="{Binding SegmentStringSource}"
+                ItemsSource="{Binding SegmentStringSource, Mode=TwoWay}"
                 SelectedTextColor="White"
                 TextColor="Black"
                 TintColor="{StaticResource darkblue}"
@@ -88,6 +88,7 @@
                 BorderColor="White"
                 BorderWidth="1"
                 FontSize="Small"
+                IsEnabled="{Binding SegmentedEnabled}"
                 FontFamily="{StaticResource PlatformFontName}"
                 Margin="4">
                 <control:SegmentedControl.Children>
@@ -108,21 +109,27 @@
                       IsRefreshing="{Binding IsRefreshing}"
                       RefreshCommand="{Binding ListRefreshCommand}"
                       SelectedItem="{Binding VideoSelected, Mode=TwoWay}"
-                      SeparatorColor="{StaticResource darkblue}"
+                      SeparatorColor="{Binding SeparatorColor}"
                       ItemsSource="{Binding Videos}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="100">
-                            <StackLayout BackgroundColor="AliceBlue" Orientation="Vertical" >
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="5">
-                                    <StackLayout BackgroundColor="AliceBlue" Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                        <Image Margin="2" VerticalOptions="Center" WidthRequest="100" HeightRequest="60" Source="{Binding Link}" />
+                        <ViewCell Height="90">
+                            <StackLayout Orientation="Vertical" >
+                                <StackLayout HeightRequest="90" Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="5">
+                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Image Margin="2" WidthRequest="100" HeightRequest="60" Source="{Binding Link}" />
                                     </StackLayout>
                                     <StackLayout Orientation="Vertical">
-                                        <Label Text="{Binding Views}" FontSize="Micro" HorizontalOptions="End"
-                                            TextColor="Gray" Margin="0,0,5,0" VerticalOptions="Start" HorizontalTextAlignment="End" />
-                                        <Label Text="{Binding Title}" FontSize="Medium" HorizontalOptions="FillAndExpand"
-                                            TextColor="{Binding Color, Mode=TwoWay}" Padding="10,0,5,5" VerticalOptions="FillAndExpand" />
+                                        <Label Text="{Binding Title}" FontSize="Medium"
+                                               HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"
+                                               TextColor="{Binding Color, Mode=TwoWay}"
+                                               Margin="10,0,0,0" VerticalOptions="FillAndExpand" />
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                                            <Label Text="{Binding Date}" FontSize="Micro" HorizontalOptions="StartAndExpand"
+                                                TextColor="Gray" Margin="10,0,5,0" HorizontalTextAlignment="Start" />
+                                            <Label Text="{Binding Views}" FontSize="Micro" HorizontalOptions="EndAndExpand"
+                                                TextColor="Gray" Margin="0,0,5,0" HorizontalTextAlignment="End" />
+                                        </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>

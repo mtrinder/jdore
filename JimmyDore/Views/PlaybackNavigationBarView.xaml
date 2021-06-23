@@ -37,7 +37,8 @@
               HorizontalOptions="FillAndExpand"
               VerticalOptions="Center">
                 <Label Text="{Binding PageTitle}"
-                     Style="{StaticResource darkNavBarTitleView}" />
+                       HorizontalOptions="Center"
+                       Style="{StaticResource darkNavBarTitleView}" />
             </StackLayout>
 
             <Frame Padding="0"

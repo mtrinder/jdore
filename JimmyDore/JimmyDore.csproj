@@ -24,6 +24,7 @@
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
     <PackageReference Include="Plugin.SegmentedControl.Netstandard" Version="5.4.5" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -42,6 +43,8 @@
     <Folder Include="Images\" />
     <Folder Include="Models\" />
     <Folder Include="Controls\" />
+    <Folder Include="Video\" />
+    <Folder Include="Service\YouTube\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="MainPage.xaml.cs" />
@@ -68,6 +71,11 @@
     <None Remove="Images\action-out.png" />
     <None Remove="Images\circle-down.png" />
     <None Remove="Images\settings-button.png" />
+    <None Remove="Video\" />
+    <None Remove="Sounds\jimmydore-ending.mp3" />
+    <None Remove="Video\jimmydore-liveshows.mp4" />
+    <None Remove="Service\YouTube\" />
+    <None Remove="Refractored.MvvmHelpers" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />
@@ -85,6 +93,8 @@
     <EmbeddedResource Include="Images\action-out.png" />
     <EmbeddedResource Include="Images\circle-down.png" />
     <EmbeddedResource Include="Images\settings-button.png" />
+    <EmbeddedResource Include="Sounds\jimmydore-ending.mp3" />
+    <EmbeddedResource Include="Video\jimmydore-liveshows.mp4" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

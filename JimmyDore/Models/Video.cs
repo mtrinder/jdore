@@ -12,9 +12,11 @@ namespace JimmyDore.Models
 
         public string Title { get; set; }
         public string Link { get; set; }
-        public string VidId { get; set; }
+        public string VideoId { get; set; }
         public string Likes { get; set; }
         public string Views { get; set; }
+        public string Date { get; set; }
+        public bool Funny { get; set; }
 
         string _color;
         public string Color
@@ -34,9 +36,11 @@ namespace JimmyDore.Models
             {
                 Title = this.Title,
                 Link = this.Link,
-                VidId = this.VidId,
+                VideoId = this.VideoId,
                 Likes = this.Likes,
-                Views = this.Views
+                Views = this.Views,
+                Date = this.Date,
+                Funny = this.Funny
             };
         }
     }

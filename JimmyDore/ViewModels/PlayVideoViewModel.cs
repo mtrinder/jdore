@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using JimmyDore.Extensions;
-using JimmyDore.Models;
 using JimmyDore.Services.DialogAlert;
-using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace JimmyDore.ViewModels
 {
