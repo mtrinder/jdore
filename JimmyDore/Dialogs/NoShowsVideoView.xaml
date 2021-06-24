@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="JimmyDore.Dialogs.NoShowsVideoView">
+    <ContentView.Content>
+      <Frame CornerRadius="2"              
+             Padding="0"
+             Margin="20"
+             BackgroundColor="{StaticResource white}"
+             HorizontalOptions="CenterAndExpand"
+             VerticalOptions="CenterAndExpand"
+             HasShadow="true">
+          <StackLayout
+              Padding="0"
+              Margin="0"
+              BackgroundColor="{StaticResource white}"
+              HorizontalOptions="CenterAndExpand"
+              Spacing="5"
+              VerticalOptions="CenterAndExpand">
+
+              <StackLayout BackgroundColor="Transparent" Orientation="Vertical" HeightRequest="300" WidthRequest="200">
+                  <xct:MediaElement BackgroundColor="White"
+                                    HeightRequest="300" WidthRequest="300"
+                                    Source="ms-appx:///jimmydoreliveshows.mp4"
+                                    AutoPlay="True" ShowsPlaybackControls="False" />
+              </StackLayout>
+
+              <Grid Margin="10,0,10,5">
+                  <Button
+                      x:Name="CancelButton"
+                      Grid.Column="1"
+                      BackgroundColor="Transparent"
+                      Text="HA HA!"
+                      TextColor="{StaticResource defaultText}"
+                      FontAttributes="Bold"
+                      Clicked="OnCancelButtonClicked">
+                  </Button>
+                  <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+              </Grid>
+          </StackLayout>  
+      </Frame>
+    </ContentView.Content>
+</ContentView>

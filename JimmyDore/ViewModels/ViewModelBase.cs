@@ -161,6 +161,14 @@ namespace JimmyDore.ViewModels
         }
         // Alerting Methods
 
+        public async Task DisplayNoShows()
+        {
+            if (DialogService != null)
+            {
+                await DialogService.DisplayNoShows();
+            }
+        }
+
         public async Task DisplayAlertWithOk(string title, string message)
         {
             if (DialogService != null)

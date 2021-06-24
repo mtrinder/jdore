@@ -26,6 +26,7 @@
     <PackageReference Include="Plugin.SegmentedControl.Netstandard" Version="5.4.5" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="FeedParserCore" Version="2.0.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -86,6 +87,8 @@
     <None Remove="Images\play-icon.png" />
     <None Remove="Images\jd-settings.jpg" />
     <None Remove="Images\jd-podcast.png" />
+    <None Remove="Plugin.MediaManager.Forms" />
+    <None Remove="Xamarin.CommunityToolkit" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />
@@ -104,7 +107,6 @@
     <EmbeddedResource Include="Images\circle-down.png" />
     <EmbeddedResource Include="Images\settings-button.png" />
     <EmbeddedResource Include="Sounds\jimmydore-ending.mp3" />
-    <EmbeddedResource Include="Video\jimmydore-liveshows.mp4" />
     <EmbeddedResource Include="Images\jd-liveshows.png" />
     <EmbeddedResource Include="Images\jd-favorites.png" />
     <EmbeddedResource Include="Images\jd-settings.png" />

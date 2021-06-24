@@ -4,9 +4,6 @@ using Android.Runtime;
 using Android.OS;
 using Plugin.CurrentActivity;
 using NControl.Droid;
-using Android.Views;
-using Lottie.Forms.Platforms.Android;
-using Plugin.Permissions;
 using Prism.Events;
 using Prism.Ioc;
 using Xamarin.Forms;
@@ -82,8 +79,11 @@ namespace JimmyDore.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Plugin.InputKit.Platforms.Droid.Config.Init(this, savedInstanceState);
+
             NControlViewRenderer.Init();
+
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
             Rg.Plugins.Popup.Popup.Init(this);
 
             var app = new App(new AndroidInitializer());

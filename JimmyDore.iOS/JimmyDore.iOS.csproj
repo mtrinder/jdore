@@ -152,12 +152,16 @@
     <PackageReference Include="Plugin.SegmentedControl.Netstandard">
       <Version>5.4.5</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.CommunityToolkit">
+      <Version>1.1.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="splash.jpg" />
     <BundleResource Include="thumb-icon.json" />
     <BundleResource Include="GoogleService-Info.plist" />
+    <BundleResource Include="Resources\jimmydoreliveshows.mp4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JimmyDore\JimmyDore.csproj">

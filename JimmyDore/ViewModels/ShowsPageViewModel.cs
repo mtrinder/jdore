@@ -81,7 +81,7 @@ namespace JimmyDore.ViewModels
                 {
                     IsRefreshing = true;
 
-                    await Task.Delay(TimeSpan.FromSeconds(5));
+                    await Task.Delay(TimeSpan.FromSeconds(4));
 
                     //var pods = await RssParse(_url);
                     //Podcasts = new ObservableRangeCollection<Podcast>(pods);
@@ -89,9 +89,11 @@ namespace JimmyDore.ViewModels
                 finally
                 {
                     IsRefreshing = false;
+
+                    await DialogService.DisplayNoShows();
+
                     //SeparatorColor = "DarkBlue";
                 }
-
             }
         }
     }

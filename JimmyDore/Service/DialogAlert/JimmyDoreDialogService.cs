@@ -15,6 +15,33 @@ namespace JimmyDore.Services.DialogAlert
             //_loggingService = loggingService;
         }
 
+        
+        public async Task DisplayNoShows()
+        {
+            var inputView = new NoShowsVideoView();
+            await DisplayDialogAsync(inputView);
+        }
+
+        private async Task<bool> DisplayDialogAsync(NoShowsVideoView inputView)
+        {
+            var popup = new AlertDialogBase(inputView);
+
+            // subscribe to the TextInputView's Button click event
+            inputView.CancelButtonTapped += OnCancel;
+
+            // Push the page to Navigation Stack
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popup);
+
+            // await for the user to enter the text input
+            var result = await popup.PageClosedTask;
+
+            // Pop the page from Navigation Stack
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAsync();
+
+            // return user selected result
+            return result;
+        }
+
         public async Task DisplayAlertWithOk(string title, string message, bool withSound = true)
         {
             //_loggingService.Debug("{type} {method} title: {title} message: {dialog_message} withSound:{withSound}", GetType().Name, nameof(DisplayAlertWithOk), title, message, withSound);
@@ -93,6 +120,10 @@ namespace JimmyDore.Services.DialogAlert
             {
                 inputView.AcceptButtonTapped -= OnAccept;
                 inputView.CancelButtonTapped -= OnCancel;
+            }
+            if (sender is NoShowsVideoView inputView2)
+            {
+                inputView2.CancelButtonTapped -= OnCancel;
             }
         }
 
