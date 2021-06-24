@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 //using JimmyDore.Events;
 using JimmyDore.Extensions;
 using JimmyDore.Services.DialogAlert;
+using Prism;
 //using JimmyDore.Services.Logging;
 using Prism.Commands;
 using Prism.Events;
@@ -14,7 +15,7 @@ using Prism.Navigation;
 
 namespace JimmyDore.ViewModels
 {
-    public class ViewModelBase : BindableBase, INavigationAware, IDestructible
+    public class ViewModelBase : BindableBase, INavigationAware, IDestructible, IActiveAware
     {
         protected INavigationService NavigationService { get; }
         protected IEventAggregator EventAggregator { get; }
@@ -31,6 +32,23 @@ namespace JimmyDore.ViewModels
         private DelegateCommand _toggleMasterPageCommand;
         private bool _isVisibleBackButton = true;
 
+        public event EventHandler IsActiveChanged;
+
+        bool _isActive;
+        public bool IsActive
+        {
+            get { return _isActive; }
+            set
+            {
+                _isActive = value;
+                OnActiveChanged(_isActive);
+            }
+        }
+
+        protected virtual void OnActiveChanged(bool active)
+        {
+
+        }
 
         protected ViewModelBase(INavigationService navigationService, IJimmyDoreDialogService dialogService, IEventAggregator eventAggregator)//, ILoggingService loggingService)
         {

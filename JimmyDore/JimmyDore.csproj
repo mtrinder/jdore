@@ -25,6 +25,7 @@
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.3.10" />
     <PackageReference Include="Plugin.SegmentedControl.Netstandard" Version="5.4.5" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="FeedParserCore" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -79,6 +80,12 @@
     <None Remove="Images\jd-liveshows.png" />
     <None Remove="Images\jd-favorites.png" />
     <None Remove="Images\jd-settings.png" />
+    <None Remove="Microsoft.Toolkit.Parsers" />
+    <None Remove="Images\mic-button.png" />
+    <None Remove="FeedParserCore" />
+    <None Remove="Images\play-icon.png" />
+    <None Remove="Images\jd-settings.jpg" />
+    <None Remove="Images\jd-podcast.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />
@@ -101,6 +108,9 @@
     <EmbeddedResource Include="Images\jd-liveshows.png" />
     <EmbeddedResource Include="Images\jd-favorites.png" />
     <EmbeddedResource Include="Images\jd-settings.png" />
+    <EmbeddedResource Include="Images\mic-button.png" />
+    <EmbeddedResource Include="Images\play-icon.png" />
+    <EmbeddedResource Include="Images\jd-podcast.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

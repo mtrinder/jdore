@@ -18,8 +18,6 @@ namespace JimmyDore.ViewModels
         protected override async Task OnCloseInternalAsync()
         {
             await base.OnCloseInternalAsync();
-
-            //await NavigationService.NavigateAsync($"/{nameof(MasterDetailMenuPage)}/{nameof(TapToStartPage)}");
         }
     }
 }

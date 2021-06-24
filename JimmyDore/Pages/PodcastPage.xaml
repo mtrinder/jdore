@@ -6,10 +6,10 @@
              xmlns:ext="clr-namespace:JimmyDore.Extensions"
              xmlns:views="clr-namespace:JimmyDore.Views"
              prism:ViewModelLocator.AutowireViewModel="True"
-             BackgroundColor="{StaticResource white}"
-             Title="Shows"
-             x:Class="JimmyDore.Pages.ShowsPage">
-    <ContentPage.Resources>
+             x:Class="JimmyDore.Pages.PodcastPage"
+             Title="Podcasts"
+             BackgroundColor="{StaticResource white}">
+<ContentPage.Resources>
         <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
             <On Platform="Android" Value="Serif"></On>
             <On Platform="iOS" Value="Helvetica"></On>
@@ -25,10 +25,10 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Orientation="Horizontal"
-                BackgroundColor="{StaticResource greenText}"
+                BackgroundColor="{StaticResource purpleText}"
                 VerticalOptions="FillAndExpand">
 
-                <Image Source="{ext:ImageResource JimmyDore.Images.jd-liveshows.png}"
+                <Image Source="{ext:ImageResource JimmyDore.Images.jd-podcast.png}"
                         VerticalOptions="Center"
                         HorizontalOptions="Start"
                         HeightRequest="100"
@@ -43,9 +43,9 @@
                            HorizontalTextAlignment="Start"
                            FontSize="Large"
                            Padding="0,20,0,0"
-                           Text="The Live Shows" />
+                           Text="The Podcasts" />
 
-                <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                                  Margin="0,0,0,0"
                                  VerticalOptions="FillAndExpand">
                         <Label Style="{StaticResource pageTitle}"
@@ -54,37 +54,33 @@
                                HorizontalTextAlignment="Start"
                                Margin="0,3,0,0"
                                FontSize="Small"
-                               Text="Live shows page is here" />
+                               Text="View my podcasts here" />
 
                         <Button Style="{StaticResource pageTitle}"
                                 VerticalOptions="Start"
                                 HorizontalOptions="EndAndExpand"
-                                Command="{Binding OnShowsButtonPress}"
+                                Command="{Binding OnMicButtonPress}"
                                 FontSize="Large"
                                 HeightRequest="25"
                                 WidthRequest="30"
-                                BackgroundColor="PaleGreen"
-                                ImageSource="{ext:ImageResource JimmyDore.Images.live-button.png}" />
+                                BackgroundColor="Wheat"
+                                ImageSource="{ext:ImageResource JimmyDore.Images.mic-button.png}" />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
 
-                      <!--
-                      RefreshControlColor="{StaticResource darkblue}"
-                      RefreshCommand="{Binding ListRefreshCommand}"
-                      SelectedItem="{Binding PodcastSelected, Mode=TwoWay}"
-                      ItemsSource="{Binding Podcasts}"-->
-
-            <ListView Grid.Row="1" x:Name="ShowsList"
+            <ListView Grid.Row="1" x:Name="AudioList"
                       Grid.Column="0"
                       HasUnevenRows="True"
                       SelectionMode="Single"
                       BackgroundColor="AliceBlue"
                       IsPullToRefreshEnabled="True"
+                      IsRefreshing="{Binding IsRefreshing}"
                       RefreshControlColor="{StaticResource darkblue}"
                       RefreshCommand="{Binding ListRefreshCommand}"
-                      IsRefreshing="{Binding IsRefreshing}"
-                      SeparatorColor="{Binding SeparatorColor}" >
+                      SelectedItem="{Binding PodcastSelected, Mode=TwoWay}"
+                      SeparatorColor="{Binding SeparatorColor}"
+                      ItemsSource="{Binding Podcasts}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="90">

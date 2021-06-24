@@ -16,7 +16,7 @@
         </OnPlatform>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid BackgroundColor="AliceBlue">
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="180"/>
                 <RowDefinition Height="*"/>
@@ -42,7 +42,7 @@
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start"
                            FontSize="Large"
-                           Padding="20,55,0,0"
+                           Padding="0,55,0,0"
                            Text="App Settings" />
 
                     <StackLayout Orientation="Horizontal"

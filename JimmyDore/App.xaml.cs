@@ -14,8 +14,6 @@ using JimmyDore.Services.DialogAlert;
 using JimmyDore.Services.Localise;
 using Plugin.FirebasePushNotification;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using JimmyDore.Service.YouTube;
 
 namespace JimmyDore
@@ -123,10 +121,12 @@ namespace JimmyDore
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<NewsPage, NewsPageViewModel>();
             containerRegistry.RegisterForNavigation<ShowsPage, ShowsPageViewModel>();
+            containerRegistry.RegisterForNavigation<PodcastPage, PodcastPageViewModel>();
             containerRegistry.RegisterForNavigation<FavoritesPage, FavoritesPageViewModel>();
 
             // navigation
             containerRegistry.RegisterForNavigation<PlayVideoPage, PlayVideoViewModel>();
+            containerRegistry.RegisterForNavigation<PlayPodcastPage, PlayPodcastViewModel>();
         }
 
         protected override void OnStart()

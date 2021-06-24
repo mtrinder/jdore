@@ -25,8 +25,6 @@ namespace JimmyDore.ViewModels
         DelegateCommand _listRefresh;
         DelegateCommand _onYouTubeButtonPress;
 
-        HttpClient httpClient = new HttpClient();
-
         public MainPageViewModel(
             INavigationService navigationService,
             IYouTubeService youTubeService,
@@ -172,7 +170,7 @@ namespace JimmyDore.ViewModels
 
                 var navParams = new NavigationParameters
                 {
-                    { "VideoId", VideoSelected.VideoId },
+                    { NavigationParameterKeys.VideoId, VideoSelected.VideoId },
                 };
 
                 await NavigationService.NavigateAsync($"{nameof(PlayVideoPage)}", navParams);
@@ -183,6 +181,12 @@ namespace JimmyDore.ViewModels
 
         private async Task OnRefreshAsync()
         {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess == Xamarin.Essentials.NetworkAccess.None)
+            {
+                await DialogService.DisplayAlertWithOk("Internet?", "Please check your connection then swipe down to refresh.");
+                return;
+            }
+
             try
             {
                 SelectedSegment = 0;

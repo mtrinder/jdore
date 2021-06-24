@@ -38,13 +38,13 @@
                 <StackLayout Orientation="Vertical"
                              HorizontalOptions="CenterAndExpand">
                     <Label Style="{StaticResource pageTitle}"
-                           VerticalOptions="End"
+                           VerticalOptions="FillAndExpand"
                            HorizontalOptions="FillAndExpand"
-                           VerticalTextAlignment="Center"
-                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="End"
+                           HorizontalTextAlignment="Start"
                            FontSize="Large"
-                           Padding="0,70,0,0"
-                           Text="My Favorite" />
+                           Padding="0,20,0,0"
+                           Text="My Favorites" />
 
                     <StackLayout Orientation="Horizontal" 
                                  VerticalOptions="FillAndExpand">

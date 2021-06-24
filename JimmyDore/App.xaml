@@ -18,7 +18,7 @@
             <Color x:Key="redText">#f94c07</Color>
             <Color x:Key="yellowText">#eacf80</Color>
             <Color x:Key="greenText">#50b166</Color>
-            <Color x:Key="purpleText">#884de7</Color>
+            <Color x:Key="purpleText">#8e79d9</Color>
             <Color x:Key="positiveBlue">#58bdb4</Color>
             <Color x:Key="greyNavbar">#38474f</Color>
             <Color x:Key="defaultText">#333333</Color>
