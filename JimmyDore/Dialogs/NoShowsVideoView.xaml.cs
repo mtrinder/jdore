@@ -13,8 +13,6 @@ namespace JimmyDore.Dialogs
         public NoShowsVideoView()
         {
             InitializeComponent();
-
-            CancelButton.Text = "HAHA!";
         }
 
         private void OnCancelButtonClicked(object sender, EventArgs e)

@@ -20,6 +20,9 @@
               Spacing="5"
               VerticalOptions="CenterAndExpand">
 
+              <!--Source="ms-appx:///jimmydoreliveshows.mp4"-->
+              <!--Source="https://github.com/mtrinder/jdore/blob/main/JimmyDore.Android/Resources/raw/jimmydoreliveshows.mp4?raw=true"-->
+
               <StackLayout BackgroundColor="Transparent" Orientation="Vertical" HeightRequest="300" WidthRequest="200">
                   <xct:MediaElement BackgroundColor="White"
                                     HeightRequest="300" WidthRequest="300"
@@ -32,7 +35,7 @@
                       x:Name="CancelButton"
                       Grid.Column="1"
                       BackgroundColor="Transparent"
-                      Text="HA HA!"
+                      Text="OK"
                       TextColor="{StaticResource defaultText}"
                       FontAttributes="Bold"
                       Clicked="OnCancelButtonClicked">
