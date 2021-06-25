@@ -125,6 +125,7 @@ namespace JimmyDore
             containerRegistry.RegisterForNavigation<FavoritesPage, FavoritesPageViewModel>();
 
             // navigation
+            containerRegistry.RegisterForNavigation<ChannelPage, ChannelPageViewModel>();
             containerRegistry.RegisterForNavigation<PlayVideoPage, PlayVideoViewModel>();
             containerRegistry.RegisterForNavigation<PlayPodcastPage, PlayPodcastViewModel>();
         }

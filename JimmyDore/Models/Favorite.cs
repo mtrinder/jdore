@@ -3,12 +3,12 @@ using Prism.Mvvm;
 
 namespace JimmyDore.Models
 {
-    public class Podcast : BindableBase, ICloneable
+    public class Favorite : BindableBase, ICloneable
     {
         public string Title { get; set; }
+        public string ShortTitle { get; set; }
         public string Link { get; set; }
-        public string Description { get; set; }
-        public DateTime Date { get; set; }
+        public string Id { get; set; }
 
         string _color;
         public string Color
@@ -24,12 +24,12 @@ namespace JimmyDore.Models
 
         public object Clone()
         {
-            return new Podcast
+            return new Favorite
             {
                 Title = this.Title,
+                ShortTitle = this.ShortTitle,
                 Link = this.Link,
-                Date = this.Date,
-                Description = this.Description,
+                Id = this.Id,
                 Color = this.Color
             };
         }

@@ -40,7 +40,8 @@ namespace JimmyDore.Models
                 Likes = this.Likes,
                 Views = this.Views,
                 Date = this.Date,
-                Funny = this.Funny
+                Funny = this.Funny,
+                Color = this.Color
             };
         }
     }

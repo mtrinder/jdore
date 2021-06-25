@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using JimmyDore.Extensions;
 using JimmyDore.Models;
@@ -9,7 +6,6 @@ using JimmyDore.Pages;
 using JimmyDore.Service.YouTube;
 using JimmyDore.Services.DialogAlert;
 using MvvmHelpers;
-using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
@@ -17,44 +13,26 @@ using Xamarin.Forms;
 
 namespace JimmyDore.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class ChannelPageViewModel : ViewModelBase
     {
         bool _firstTime;
         private readonly IYouTubeService _youTubeService;
+        private DelegateCommand _navigateOutCommand;
 
-        DelegateCommand _listRefresh;
-        DelegateCommand _onYouTubeButtonPress;
-
-        public MainPageViewModel(
+        public ChannelPageViewModel(
             INavigationService navigationService,
             IYouTubeService youTubeService,
             IJimmyDoreDialogService dialogService,
             IEventAggregator eventAggregator) : base(navigationService, dialogService, eventAggregator)
         {
-            _previousSegment = 0;
-
             _youTubeService = youTubeService;
 
             SeparatorColor = "DarkBlue";
-            
-            SegmentStringSource = new[] { "All Videos", "The Funny Ones" };
 
             MessagingCenter.Subscribe<IYouTubeService>(this, "Video-Stats-Retrieved", s =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    IsRefreshing = false;
-                    SegmentedEnabled = true;
-                    SeparatorColor = "DarkBlue";
-                });
-            });
-
-            MessagingCenter.Subscribe<IYouTubeService>(this, "Video-Retrieve-Failed", s =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    IsRefreshing = false;
-                    SegmentedEnabled = true;
                     SeparatorColor = "DarkBlue";
                 });
             });
@@ -66,6 +44,10 @@ namespace JimmyDore.ViewModels
 
             if (parameters.IsNewNavigation())
             {
+                PageTitle = parameters.Get<string>(NavigationParameterKeys.Title);
+                ChannelId = parameters.Get<string>(NavigationParameterKeys.ChannelId);
+                ChannelUrl = $"https://www.youtube.com/channel/{ChannelId}";
+
                 if (Device.RuntimePlatform == Device.Android)
                 {
                     Device.BeginInvokeOnMainThread(() => ShowList = true);
@@ -80,26 +62,13 @@ namespace JimmyDore.ViewModels
                         Device.BeginInvokeOnMainThread(() => ShowList = true);
                     }
 
-                    IsRefreshing = true;
-
                     return false;
                 });
             }
         }
 
-        bool _isRefreshing;
-        public bool IsRefreshing
-        {
-            get => _isRefreshing;
-            set => SetProperty(ref _isRefreshing, value);
-        }
-
-        bool _segmentEnabled;
-        public bool SegmentedEnabled
-        {
-            get => _segmentEnabled;
-            set => SetProperty(ref _segmentEnabled, value);
-        }
+        public string ChannelId { get; set; }
+        public string ChannelUrl { get; set; }
 
         string _separatorColor;
         public string SeparatorColor
@@ -115,15 +84,6 @@ namespace JimmyDore.ViewModels
             set => SetProperty(ref _showList, value);
         }
 
-        int _selectedSegment;
-        int _previousSegment;
-        public int SelectedSegment
-        {
-            get => _selectedSegment;
-            set => SetProperty(ref _selectedSegment, value, ChangeVideoList);
-        }
-
-        ObservableRangeCollection<Video> _allVideos = new ObservableRangeCollection<Video>();
         ObservableRangeCollection<Video> _videos = new ObservableRangeCollection<Video>();
         public ObservableRangeCollection<Video> Videos
         {
@@ -139,22 +99,21 @@ namespace JimmyDore.ViewModels
             set => SetProperty(ref _videoSelected, value, OnVideoTapped);
         }
 
-        string[] _segmentStringSource;
-        public string[] SegmentStringSource
+        public DelegateCommand NavigateOutCommand => _navigateOutCommand ?? (_navigateOutCommand = new DelegateCommand(async () => await ExecuteTaskInLockAsync(OnNavigateOutCommandAsync), CanNavigateOut));
+
+        private bool CanNavigateOut()
         {
-            get => _segmentStringSource;
-            set => SetProperty(ref _segmentStringSource, value);
+            return Xamarin.Essentials.Launcher.CanOpenAsync(ChannelUrl).Result;
         }
 
-        public DelegateCommand ListRefreshCommand => _listRefresh ?? (_listRefresh = new DelegateCommand(async () => await ExecuteTaskInLockAsync(OnRefreshAsync), CanExecute)
-            .ObservesProperty(() => IsBusy).ObservesProperty(() => IsLocked));
-
-        public DelegateCommand OnYouTubeButtonPress => _onYouTubeButtonPress ?? (_onYouTubeButtonPress = new DelegateCommand(async () => await ExecuteTaskInLockAsync(OnYouTubeAsync), CanExecute)
-            .ObservesProperty(() => IsBusy).ObservesProperty(() => IsLocked));
-
-        private async Task OnYouTubeAsync()
+        private async Task OnNavigateOutCommandAsync()
         {
-            await Xamarin.Essentials.Launcher.OpenAsync("https://www.youtube.com/channel/UC3M7l8ved_rYQ45AVzS0RGA");
+            await OnNavigateOutCommandInternalAsync();
+        }
+
+        protected virtual async Task OnNavigateOutCommandInternalAsync(INavigationParameters navParams = null)
+        {
+            await Xamarin.Essentials.Launcher.OpenAsync(ChannelUrl);
         }
 
         async void OnVideoTapped()
@@ -185,32 +144,19 @@ namespace JimmyDore.ViewModels
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess == Xamarin.Essentials.NetworkAccess.None)
             {
-                IsRefreshing = false;
-                SegmentedEnabled = true;
-
                 await DialogService.DisplayAlertWithOk("Internet?", "Please check your connection then swipe down to refresh.");
                 return;
             }
 
             try
             {
-                SelectedSegment = 0;
-                _previousSegment = _selectedSegment;
-
-                SegmentedEnabled = false;
-
                 if (_firstTime)
                 {
                     SeparatorColor = "AliceBlue";
                 }
 
                 Videos.Clear();
-                Videos = await _youTubeService.GetJimmysVideos(_firstTime);
-
-                _allVideos.Clear();
-                _allVideos.AddRange(Videos);
-
-                ChangeVideoList();
+                Videos = await _youTubeService.GetPlaylistForChannel(ChannelId, 15);
             }
             finally
             {
@@ -219,29 +165,6 @@ namespace JimmyDore.ViewModels
                     _firstTime = true;
                 }
             }
-        }
-
-        void ChangeVideoList()
-        {
-            if (_previousSegment == _selectedSegment)
-            {
-                return;
-            }
-
-            _previousSegment = _selectedSegment;
-
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                switch (_selectedSegment)
-                {
-                    case 0:
-                        Videos.ReplaceRange(_allVideos);
-                        break;
-                    case 1:
-                        Videos.ReplaceRange(_allVideos.Where(x => x.Funny));
-                        break;
-                }
-            });
         }
     }
 }

@@ -9,6 +9,6 @@ namespace JimmyDore.Service.YouTube
     public interface IYouTubeService
     {
         Task<ObservableRangeCollection<Video>> GetJimmysVideos(bool refresh);
-        Task<ObservableRangeCollection<Video>> GetPlaylistForChannel(string channel);
+        Task<ObservableRangeCollection<Video>> GetPlaylistForChannel(string channel, int maxCount);
     }
 }

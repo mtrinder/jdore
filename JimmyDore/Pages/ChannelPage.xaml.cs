@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace JimmyDore.Pages
 {
-    public partial class FavoritesPage : ContentPage
+    public partial class ChannelPage : ContentPage
     {
-        public FavoritesPage()
+        public ChannelPage()
         {
             InitializeComponent();
         }
@@ -16,7 +16,7 @@ namespace JimmyDore.Pages
         {
             base.OnAppearing();
 
-            Device.BeginInvokeOnMainThread(() => ChannelsList.SelectedItem = null);
+            Device.BeginInvokeOnMainThread(() => VideoList.SelectedItem = null);
         }
     }
 }

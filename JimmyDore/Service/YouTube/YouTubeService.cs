@@ -15,6 +15,7 @@ namespace JimmyDore.Service.YouTube
         const int count = 25;
         const string uri = "https://youtube.googleapis.com";
         string key = "8UTfMLgMdJqFcU4J5GqU7Dd2YcmW3TpHAySazIA";
+        string jimmysChannel = "UU3M7l8ved_rYQ45AVzS0RGA";
 
         ObservableRangeCollection<Video> _jimmysVideos;
 
@@ -31,7 +32,7 @@ namespace JimmyDore.Service.YouTube
 
                 try
                 {
-                    var jimmysVideos = await GetPlaylistForChannel("UU3M7l8ved_rYQ45AVzS0RGA");
+                    var jimmysVideos = await GetPlaylistForChannel(jimmysChannel, count);
 
                     if (_jimmysVideos != null)
                     {
@@ -71,18 +72,23 @@ namespace JimmyDore.Service.YouTube
             return _jimmysVideos;
         }
 
-        public async Task<ObservableRangeCollection<Video>> GetPlaylistForChannel(string channel)
+        public async Task<ObservableRangeCollection<Video>> GetPlaylistForChannel(string channel, int maxCount)
         {
             ObservableRangeCollection<Video> videos = new ObservableRangeCollection<Video>();
 
             using (HttpClient _httpClient = new HttpClient())
             {
-                var result = await _httpClient.GetStringAsync($"{uri}/youtube/v3/playlistItems?part=snippet&maxResults={count}&playlistId={channel}&key={key}");
+                var result = await _httpClient.GetStringAsync($"{uri}/youtube/v3/playlistItems?part=snippet&maxResults={maxCount}&playlistId={channel}&key={key}");
 
                 var videosResult = JsonConvert.DeserializeObject<YouTubeResult>(result);
 
                 foreach (var item in videosResult.Items)
                 {
+                    if (item.Snippet.Title.Length > 80)
+                    {
+                        item.Snippet.Title = item.Snippet.Title.Substring(0, 80) + "...";
+                    }
+
                     var video = new Video
                     {
                         Title = item.Snippet.Title + "                    ",
@@ -94,6 +100,11 @@ namespace JimmyDore.Service.YouTube
 
                     videos.Add(video);
                 }
+            }
+
+            if (channel != jimmysChannel)
+            {
+                MessagingCenter.Send<IYouTubeService>(this, "Video-Stats-Retrieved");
             }
 
             return videos;

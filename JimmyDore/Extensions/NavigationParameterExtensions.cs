@@ -93,7 +93,8 @@ namespace JimmyDore.Extensions
     internal enum NavigationParameterKeys
     {
         VideoId,
-        PodcastLink
+        PodcastLink,
+        ChannelId,
+        Title
     }
-
 }
