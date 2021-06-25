@@ -10,6 +10,8 @@ using UIKit;
 using Plugin.FirebasePushNotification;
 using System;
 using System.Collections.Generic;
+using JimmyDore.Services.DialogAlert;
+using JimmyDore.Enums;
 
 namespace JimmyDore.iOS
 {
@@ -36,6 +38,27 @@ namespace JimmyDore.iOS
 
             if (ObjCRuntime.Runtime.Arch == ObjCRuntime.Arch.DEVICE)
             {
+                Device.StartTimer(TimeSpan.FromSeconds(10), () =>
+                {
+                    var settings = UIApplication.SharedApplication.CurrentUserNotificationSettings.Types;
+                    if (settings == UIUserNotificationType.None)
+                    {
+                        var lastSetting = Xamarin.Essentials.Preferences.Get(PreferenceKeys.NotificationWarning, false);
+
+                        if (!lastSetting)
+                        {
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                var result = await _app.Container.Resolve<IJimmyDoreDialogService>().UserAcceptedDisplayAlert(
+                                    "Notifications", "Your Notifications are off. If you want messages from Jimmy go to 'Device Settings' and turn on Notifications for this app.", "Stop", "OK");
+
+                                Xamarin.Essentials.Preferences.Set(PreferenceKeys.NotificationWarning, result);
+                            });
+                        }
+                    }
+                    return false;
+                });
+
                 FirebasePushNotificationManager.Initialize(options, new NotificationUserCategory[]
                 {
                     new NotificationUserCategory("message",new List<NotificationUserAction> {
@@ -78,6 +101,8 @@ namespace JimmyDore.iOS
         // To receive notifications in background in any iOS version
         public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
         {
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+
             // If you are receiving a notification message while your app is in the background,
             // this callback will not be fired 'till the user taps on the notification launching the application.
 

@@ -8,7 +8,7 @@
              xmlns:ext="clr-namespace:JimmyDore.Extensions"
              xmlns:view="clr-namespace:JimmyDore.Views"
              prism:ViewModelLocator.AutowireViewModel="True"
-             Title="Videos"
+             Title="Vids"
              x:Class="JimmyDore.Pages.MainPage">
 
     <ContentPage.Resources>

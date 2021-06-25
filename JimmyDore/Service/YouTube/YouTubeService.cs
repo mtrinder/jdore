@@ -12,7 +12,7 @@ namespace JimmyDore.Service.YouTube
 {
     public class YouTubeService : IYouTubeService
     {
-        const int count = 50;
+        const int count = 25;
         const string uri = "https://youtube.googleapis.com";
         string key = "8UTfMLgMdJqFcU4J5GqU7Dd2YcmW3TpHAySazIA";
 

@@ -32,6 +32,7 @@ namespace JimmyDore.ViewModels
             IEventAggregator eventAggregator) : base(navigationService, dialogService, eventAggregator)
         {
             _previousSegment = 0;
+
             _youTubeService = youTubeService;
 
             SeparatorColor = "DarkBlue";
@@ -74,12 +75,13 @@ namespace JimmyDore.ViewModels
 
                 Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
-                    IsRefreshing = true;
-
                     if (Device.RuntimePlatform == Device.iOS)
                     {
                         Device.BeginInvokeOnMainThread(() => ShowList = true);
                     }
+
+                    IsRefreshing = true;
+
                     return false;
                 });
             }

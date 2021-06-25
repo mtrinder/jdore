@@ -9,11 +9,11 @@
             Title="Jimmy Door Show" >
 
     <TabbedPage.Children>
-        <pages:MainPage Title="Videos" IconImageSource="{ext:ImageResource JimmyDore.Images.youtube-button.png}"/>
+        <pages:MainPage Title="Vids" IconImageSource="{ext:ImageResource JimmyDore.Images.youtube-button.png}"/>
         <!--<pages:NewsPage Title="News" IconImageSource="{ext:ImageResource JimmyDore.Images.news-button.png}"/>-->
-        <pages:PodcastPage Title="Podcast" IconImageSource="{ext:ImageResource JimmyDore.Images.mic-button.png}"/>
+        <pages:PodcastPage Title="Pods" IconImageSource="{ext:ImageResource JimmyDore.Images.mic-button.png}"/>
         <pages:ShowsPage Title="Shows" IconImageSource="{ext:ImageResource JimmyDore.Images.live-button.png}"/>
-        <pages:FavoritesPage Title="Favorites" IconImageSource="{ext:ImageResource JimmyDore.Images.fav-button.png}"/>
-        <pages:SettingsPage Title="Settings" IconImageSource="{ext:ImageResource JimmyDore.Images.settings-button.png}"/>
+        <pages:FavoritesPage Title="Favs" IconImageSource="{ext:ImageResource JimmyDore.Images.fav-button.png}"/>
+        <!--<pages:SettingsPage Title="Settings" IconImageSource="{ext:ImageResource JimmyDore.Images.settings-button.png}"/>-->
      </TabbedPage.Children>
 </TabbedPage>
