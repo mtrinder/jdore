@@ -7,7 +7,7 @@
              xmlns:views="clr-namespace:JimmyDore.Views"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="JimmyDore.Pages.SettingsPage"
-             Title="Settings"
+             Title="About"
              BackgroundColor="{StaticResource white}">
 <ContentPage.Resources>
         <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
@@ -39,24 +39,20 @@
                     <Label Style="{StaticResource pageTitle}"
                            VerticalOptions="FillAndExpand"
                            HorizontalOptions="FillAndExpand"
-                           VerticalTextAlignment="Center"
+                           VerticalTextAlignment="End"
                            HorizontalTextAlignment="Start"
                            FontSize="Large"
-                           Padding="0,55,0,0"
-                           Text="App Settings" />
+                           Padding="0,20,0,0"
+                           Text="The Jimmy Dore Show" />
 
-                    <StackLayout Orientation="Horizontal"
-                                 Margin="0,0,0,0"
+                    <StackLayout Orientation="Horizontal" 
                                  VerticalOptions="FillAndExpand">
-                        <!--<Button
-                            HeightRequest="30"
-                            WidthRequest="150"
-                            VerticalOptions="Start"
-                            HorizontalOptions="Start"
-                            Text="{i18N:Translate LiveShows}"
-                            Command="{Binding MemberAccessCommand}"
-                            Style="{StaticResource materialButton}"/>-->
-
+                        <Label Style="{StaticResource pageTitle}"
+                               VerticalOptions="StartAndExpand"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"
+                               Margin="0" FontSize="Small"
+                               Text="All you need to know about TJDS" />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
