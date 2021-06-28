@@ -13,6 +13,11 @@
     <!-- colorAccent is used as the default value for colorControlActivated
             which is used to tint widgets -->
     <!--<item name="colorAccent">#FF4081</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorPressedHighlight">@color/colorLightGray</item>
+        <item name="android:colorLongPressedHighlight">@color/colorLightGray</item>
+        <item name="android:colorFocusedHighlight">@color/colorLightGray</item>
+        <item name="android:colorActivatedHighlight">@color/colorLightGray</item>
     </style>
     <style name="MainTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
