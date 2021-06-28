@@ -11,5 +11,15 @@ namespace JimmyDore.Pages
         {
             InitializeComponent();
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            if (webView != null)
+            {
+                webView.Source = new UrlWebViewSource { Url = "about:blank" };
+            }
+        }
     }
 }

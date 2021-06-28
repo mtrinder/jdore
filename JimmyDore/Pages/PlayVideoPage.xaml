@@ -21,7 +21,7 @@
                 VerticalOptions="CenterAndExpand"/>
         
             <StackLayout Grid.Row="1" Grid.Column="0">
-                <WebView Source="{Binding VideoUrl}" 
+                <WebView x:Name="webView" Source="{Binding VideoUrl}" 
                         VerticalOptions="FillAndExpand" 
                         HorizontalOptions="FillAndExpand"
                         />

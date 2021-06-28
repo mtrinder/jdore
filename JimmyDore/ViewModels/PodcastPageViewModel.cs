@@ -92,7 +92,7 @@ namespace JimmyDore.ViewModels
                 {
                     IsRefreshing = true;
                     var pods = await RssParse(_url);
-                    Podcasts = new ObservableRangeCollection<Podcast>(pods);
+                    Podcasts.AddRange(pods);
                 }
                 finally
                 {
