@@ -10,6 +10,11 @@ namespace JimmyDore.Models
         public string Description { get; set; }
         public DateTime Date { get; set; }
 
+        public Podcast()
+        {
+            ResetColor();
+        }
+
         string _color;
         public string Color
         {

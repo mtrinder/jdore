@@ -12,24 +12,26 @@ namespace JimmyDore.Service.YouTube
 {
     public class YouTubeService : IYouTubeService
     {
-        const int count = 25;
+        const int count = 50;
         const string uri = "https://youtube.googleapis.com";
+        private readonly HttpClient _httpClient;
+
         string key = "8UTfMLgMdJqFcU4J5GqU7Dd2YcmW3TpHAySazIA";
         string jimmysChannel = "UU3M7l8ved_rYQ45AVzS0RGA";
 
         ObservableRangeCollection<Video> _jimmysVideos;
 
-        public YouTubeService()
+        public YouTubeService(HttpClient httpClient)
         {
             key = new string(key.ToCharArray().Reverse().ToArray());
+
+            _httpClient = httpClient;
         }
 
         public async Task<ObservableRangeCollection<Video>> GetJimmysVideos(bool refresh)
         {
             if (refresh || _jimmysVideos == null)
             {
-                var getstats = false;
-
                 try
                 {
                     var jimmysVideos = await GetPlaylistForChannel(jimmysChannel, count);
@@ -40,24 +42,6 @@ namespace JimmyDore.Service.YouTube
                     }
 
                     _jimmysVideos = jimmysVideos;
-
-                    getstats = true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-
-                    MessagingCenter.Send<IYouTubeService>(this, "Video-Retrieve-Failed");
-                }
-
-                try
-                {
-                    if (getstats)
-                    {
-                        await GetStats(_jimmysVideos);
-
-                        MessagingCenter.Send<IYouTubeService>(this, "Video-Stats-Retrieved");
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -76,30 +60,26 @@ namespace JimmyDore.Service.YouTube
         {
             ObservableRangeCollection<Video> videos = new ObservableRangeCollection<Video>();
 
-            using (HttpClient _httpClient = new HttpClient())
+            var result = await _httpClient.GetStringAsync($"{uri}/youtube/v3/playlistItems?part=snippet&maxResults={maxCount}&playlistId={channel}&key={key}");
+
+            var videosResult = JsonConvert.DeserializeObject<YouTubeResult>(result);
+
+            foreach (var item in videosResult.Items)
             {
-                var result = await _httpClient.GetStringAsync($"{uri}/youtube/v3/playlistItems?part=snippet&maxResults={maxCount}&playlistId={channel}&key={key}");
-
-                var videosResult = JsonConvert.DeserializeObject<YouTubeResult>(result);
-
-                foreach (var item in videosResult.Items)
+                if (item.Snippet.Title.Length > 80)
                 {
-                    if (item.Snippet.Title.Length > 80)
-                    {
-                        item.Snippet.Title = item.Snippet.Title.Substring(0, 80) + "...";
-                    }
-
-                    var video = new Video
-                    {
-                        Title = item.Snippet.Title + "                    ",
-                        Link = item.Snippet.Thumbnails.Medium.Url,
-                        VideoId = item.Snippet.ResourceId.VideoId,
-                        Date = item.Snippet.PublishedAt.ToString("ddd, MMMM dd, yyyy htt"),
-                        Funny = item.Snippet.Description.Contains("Performed by Mike MacRae")
-                    };
-
-                    videos.Add(video);
+                    item.Snippet.Title = item.Snippet.Title.Substring(0, 80) + "...";
                 }
+
+                var video = new Video(this, item.Snippet.ResourceId.VideoId)
+                {
+                    Title = item.Snippet.Title + "                    ",
+                    Link = item.Snippet.Thumbnails.Medium.Url,
+                    Date = item.Snippet.PublishedAt.ToString("ddd, MMMM dd, yyyy htt"),
+                    Funny = item.Snippet.Description.Contains("Performed by Mike MacRae")
+                };
+
+                videos.Add(video);
             }
 
             if (channel != jimmysChannel)
@@ -110,42 +90,43 @@ namespace JimmyDore.Service.YouTube
             return videos;
         }
 
+        public async Task<Stats> GetStatisticsForVideo(string videoId)
+        {
+            var likes = "";
+            var views = "";
+            try
+            {
+                var result = await _httpClient.GetStringAsync($"{uri}/youtube/v3/videos?part=statistics&id={videoId}&key={key}");
+
+                var stats = JsonConvert.DeserializeObject<VideoResult>(result);
+
+                likes = (int.Parse(stats.Items[0].Statistics.LikeCount) / 1000).ToString("0.#k") + " Likes";
+                views = (int.Parse(stats.Items[0].Statistics.ViewCount) / 1000).ToString("0.#k") + " Views";
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return new Stats { Likes = likes, Views = views };
+        }
+
         private async Task GetStats(ObservableRangeCollection<Video> videos)
         {
             var ids = videos.Select(x => x.VideoId).ToList();
 
-            using (HttpClient _httpClient = new HttpClient())
+            foreach (var id in ids)
             {
-                foreach (var id in ids)
-                {
-                    var result = await _httpClient.GetStringAsync($"{uri}/youtube/v3/videos?part=statistics&id={id}&key={key}");
+                var result = await _httpClient.GetStringAsync($"{uri}/youtube/v3/videos?part=statistics&id={id}&key={key}");
 
-                    var stats = JsonConvert.DeserializeObject<VideoResult>(result);
+                var stats = JsonConvert.DeserializeObject<VideoResult>(result);
 
-                    var video = videos.FirstOrDefault(x => x.VideoId.Equals(id));
-                    var index = videos.IndexOf(video);
+                var video = videos.FirstOrDefault(x => x.VideoId.Equals(id));
+                var index = videos.IndexOf(video);
 
-                    video.Likes = (int.Parse(stats.Items[0].Statistics.LikeCount) / 1000).ToString("0.#k") + " Likes";
-                    video.Views = (int.Parse(stats.Items[0].Statistics.ViewCount) / 1000).ToString("0.#k") + " Views";
-                    videos[index] = video.Clone() as Video;
-                }
-            }
-        }
-
-        private async Task TestGet()
-        {
-            try
-            {
-                using (HttpClient _httpClient = new HttpClient())
-                {
-                    var result = await _httpClient.GetAsync("https://www.google.com");
-
-                    result.EnsureSuccessStatusCode();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
+                video.Likes = (int.Parse(stats.Items[0].Statistics.LikeCount) / 1000).ToString("0.#k") + " Likes";
+                video.Views = (int.Parse(stats.Items[0].Statistics.ViewCount) / 1000).ToString("0.#k") + " Views";
+                videos[index] = video.Clone() as Video;
             }
         }
     }

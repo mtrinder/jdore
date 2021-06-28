@@ -39,16 +39,6 @@ namespace JimmyDore.ViewModels
             
             SegmentStringSource = new[] { "All Videos", "The Funny Ones" };
 
-            MessagingCenter.Subscribe<IYouTubeService>(this, "Video-Stats-Retrieved", s =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    IsRefreshing = false;
-                    SegmentedEnabled = true;
-                    SeparatorColor = "DarkBlue";
-                });
-            });
-
             MessagingCenter.Subscribe<IYouTubeService>(this, "Video-Retrieve-Failed", s =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -79,8 +69,6 @@ namespace JimmyDore.ViewModels
                     {
                         Device.BeginInvokeOnMainThread(() => ShowList = true);
                     }
-
-                    IsRefreshing = true;
 
                     return false;
                 });
@@ -204,13 +192,18 @@ namespace JimmyDore.ViewModels
                     SeparatorColor = "AliceBlue";
                 }
 
-                Videos.Clear();
-                Videos = await _youTubeService.GetJimmysVideos(_firstTime);
+                var videos = await _youTubeService.GetJimmysVideos(_firstTime);
 
                 _allVideos.Clear();
-                _allVideos.AddRange(Videos);
+                _allVideos.AddRange(videos);
+
+                Videos.ReplaceRange(_allVideos);
 
                 ChangeVideoList();
+
+                IsRefreshing = false;
+                SegmentedEnabled = true;
+                SeparatorColor = "DarkBlue";
             }
             finally
             {

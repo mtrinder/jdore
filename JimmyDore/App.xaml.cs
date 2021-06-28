@@ -15,6 +15,7 @@ using JimmyDore.Services.Localise;
 using Plugin.FirebasePushNotification;
 using Xamarin.Forms;
 using JimmyDore.Service.YouTube;
+using System.Net.Http;
 
 namespace JimmyDore
 {
@@ -109,6 +110,7 @@ namespace JimmyDore
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // service
+            containerRegistry.RegisterSingleton<HttpClient>();
             containerRegistry.RegisterSingleton<IYouTubeService, YouTubeService>();
             containerRegistry.RegisterSingleton<IJimmyDoreDialogService, JimmyDoreDialogService>();
 
