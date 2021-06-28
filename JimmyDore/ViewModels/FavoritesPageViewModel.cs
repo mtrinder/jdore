@@ -67,7 +67,9 @@ namespace JimmyDore.ViewModels
 
                 try
                 {
-                    Channels.Add(new Favorite
+                    var channels = new ObservableRangeCollection<Favorite>();
+
+                    channels.Add(new Favorite
                     {
                         Title = "Ron Placone",
                         ShortTitle = "Ron Placone",
@@ -75,7 +77,7 @@ namespace JimmyDore.ViewModels
                         Link = "https://pbs.twimg.com/profile_images/1318794658403606528/z9zjn9gK.jpg"
                     });
 
-                    Channels.Add(new Favorite
+                    channels.Add(new Favorite
                     {
                         Title = "Bad Faith",
                         ShortTitle = "Bad Faith",
@@ -83,7 +85,7 @@ namespace JimmyDore.ViewModels
                         Link = "https://pbs.twimg.com/profile_images/1332427701567823881/ObL-RFX7.jpg"
                     });
 
-                    Channels.Add(new Favorite
+                    channels.Add(new Favorite
                     {
                         Title = "The Grayzone",
                         ShortTitle = "The Grayzone",
@@ -91,7 +93,7 @@ namespace JimmyDore.ViewModels
                         Link = "https://pbs.twimg.com/profile_images/1309982860582019076/NOfYOKvY_400x400.jpg"
                     });
 
-                    Channels.Add(new Favorite
+                    channels.Add(new Favorite
                     {
                         Title = "The Takeover with Justin Jackson",
                         ShortTitle = "Justin Jackson",
@@ -99,7 +101,7 @@ namespace JimmyDore.ViewModels
                         Link = "https://pbs.twimg.com/profile_images/1346280537883701248/t9ilONYc_400x400.jpg"
                     });
 
-                    Channels.Add(new Favorite
+                    channels.Add(new Favorite
                     {
                         Title = "The Katie Halper Show",
                         ShortTitle = "Katie Halper",
@@ -107,13 +109,15 @@ namespace JimmyDore.ViewModels
                         Link = "https://pbs.twimg.com/profile_images/790656974375583744/kCF3pSDg_400x400.jpg"
                     });
 
-                    Channels.Add(new Favorite
+                    channels.Add(new Favorite
                     {
                         Title = "Graham Elwood",
                         ShortTitle = "Graham Elwood",
                         Id = "UUX1rle36wIlP9ry8uidnCsA",
                         Link = "https://pbs.twimg.com/profile_images/839669140163973120/9UfoUytx.jpg"
                     });
+
+                    Channels.AddRange(channels);
                 }
                 finally
                 {
