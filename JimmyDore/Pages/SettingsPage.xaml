@@ -74,7 +74,7 @@
                     <Label HorizontalOptions="FillAndExpand"
                            VerticalOptions="Start"
                            HorizontalTextAlignment="Center"
-                           Margin="30"
+                           Margin="25"
                            FontSize="Medium"
                            FontFamily="{StaticResource PlatformFontName}" >
 
@@ -94,7 +94,7 @@
 
                     </Label>
 
-                    <Grid Margin="40,20,20,40" HorizontalOptions="CenterAndExpand">
+                    <Grid Margin="40,10,20,20" HorizontalOptions="CenterAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
@@ -184,7 +184,7 @@
                         HorizontalOptions="Center"
                         HeightRequest="25"
                         WidthRequest="25"
-                        Margin="30,20,30,10" />
+                        Margin="30,10,30,10" />
 
                     <StackLayout Orientation="Horizontal">
                         <Label HorizontalOptions="FillAndExpand"
