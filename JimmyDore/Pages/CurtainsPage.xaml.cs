@@ -10,26 +10,24 @@ namespace JimmyDore.Pages
         public CurtainsPage()
         {
             InitializeComponent();
+        }
 
-            var onSource = ImageSource.FromResource("JimmyDore.Images.jd-show.png");
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
-            var offSource = ShowLogo.Source;
-
-            void on() => Device.BeginInvokeOnMainThread(() => ShowLogo.Source = onSource);
-            void off() => Device.BeginInvokeOnMainThread(() => ShowLogo.Source = offSource);
-
-            Device.BeginInvokeOnMainThread(() =>
+            Device.StartTimer(TimeSpan.FromMilliseconds(500), () =>
             {
-                Task.Delay(500).ContinueWith(t =>
+                Device.BeginInvokeOnMainThread(async () =>
                 {
-                    on();
-                    Task.Delay(200).ContinueWith(_ => off());
-                    Task.Delay(400).ContinueWith(_ => on());
-                    Task.Delay(600).ContinueWith(_ => off());
-                    Task.Delay(1000).ContinueWith(_ => on());
-                    Task.Delay(1400).ContinueWith(_ => off());
-                    Task.Delay(2000).ContinueWith(_ => on());
+                    await Task.Delay(500);
+                    ShowLogo.IsVisible = true;
+                    await Task.Delay(200);
+                    ShowLogo.IsVisible = false;
+                    await Task.Delay(400);
+                    ShowLogo.IsVisible = true;
                 });
+                return false;
             });
         }
     }

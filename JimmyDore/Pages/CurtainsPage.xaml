@@ -19,21 +19,37 @@
                 Margin="0">
             </Image>
 
-            <Image x:Name="ShowLogo"
-                Source="{ext:ImageResource JimmyDore.Images.jd-show-off.png}"
-                RelativeLayout.XConstraint=
+            <Image Source="{ext:ImageResource JimmyDore.Images.jd-show-off.png}"
+                   RelativeLayout.XConstraint=
                     "{ConstraintExpression 
                         Type=RelativeToParent,
                         Property=Width, 
                         Factor=0.5,
                         Constant=-100}"
-                RelativeLayout.YConstraint=
+                   RelativeLayout.YConstraint=
                     "{ConstraintExpression 
                             Type=RelativeToParent,
                             Property=Height,
                             Factor=0.5,
                             Constant=-100}"
-                WidthRequest="200" HeightRequest="200" >
+                   WidthRequest="200" HeightRequest="200" >
+            </Image>
+            <Image  x:Name="ShowLogo"
+                    IsVisible="false"
+                    Source="{ext:ImageResource JimmyDore.Images.jd-show.png}"
+                    RelativeLayout.XConstraint=
+                    "{ConstraintExpression 
+                        Type=RelativeToParent,
+                        Property=Width, 
+                        Factor=0.5,
+                        Constant=-100}"
+                    RelativeLayout.YConstraint=
+                    "{ConstraintExpression 
+                            Type=RelativeToParent,
+                            Property=Height,
+                            Factor=0.5,
+                            Constant=-100}"
+                    WidthRequest="200" HeightRequest="200" >
             </Image>
         </RelativeLayout>
     </ContentPage.Content>
