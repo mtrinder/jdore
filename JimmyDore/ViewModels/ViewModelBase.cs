@@ -45,6 +45,13 @@ namespace JimmyDore.ViewModels
             }
         }
 
+        bool _actionOutVisible;
+        public virtual bool ActionOutVisible
+        {
+            get => _actionOutVisible;
+            set => SetProperty(ref _actionOutVisible, value);
+        }
+
         protected virtual void OnActiveChanged(bool active)
         {
 
@@ -53,7 +60,7 @@ namespace JimmyDore.ViewModels
         protected ViewModelBase(INavigationService navigationService, IJimmyDoreDialogService dialogService, IEventAggregator eventAggregator)//, ILoggingService loggingService)
         {
             //loggingService.Trace("{type} {method}", GetType().Name, ".ctor");
-
+            ActionOutVisible = true;
             NavigationService = navigationService;
             DialogService = dialogService;
             EventAggregator = eventAggregator;

@@ -42,9 +42,10 @@
             </StackLayout>
 
             <Frame Padding="0"
-                 BackgroundColor="Transparent"
-                 BorderColor="Transparent"
-                 Grid.Column="2">
+                   IsVisible="{Binding ActionOutVisible}"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent"
+                   Grid.Column="2">
                 <Image Source="{ext:ImageResource JimmyDore.Images.action-out.png}"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"

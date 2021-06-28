@@ -27,6 +27,7 @@ namespace JimmyDore.ViewModels
         {
             _youTubeService = youTubeService;
 
+            ActionOutVisible = false;
             SeparatorColor = "DarkBlue";
 
             MessagingCenter.Subscribe<IYouTubeService>(this, "Video-Stats-Retrieved", s =>
@@ -47,7 +48,7 @@ namespace JimmyDore.ViewModels
                 PageTitle = parameters.Get<string>(NavigationParameterKeys.Title);
                 ChannelId = parameters.Get<string>(NavigationParameterKeys.ChannelId);
                 ChannelUrl = $"https://www.youtube.com/channel/{ChannelId}";
-
+                
                 if (Device.RuntimePlatform == Device.Android)
                 {
                     Device.BeginInvokeOnMainThread(() => ShowList = true);
@@ -69,6 +70,13 @@ namespace JimmyDore.ViewModels
 
         public string ChannelId { get; set; }
         public string ChannelUrl { get; set; }
+
+        bool _actionOutVisible;
+        public override bool ActionOutVisible
+        {
+            get => _actionOutVisible;
+            set => SetProperty(ref _actionOutVisible, value);
+        }
 
         string _separatorColor;
         public string SeparatorColor
