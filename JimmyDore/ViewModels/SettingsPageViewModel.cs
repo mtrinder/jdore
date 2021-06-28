@@ -1,5 +1,7 @@
-﻿using JimmyDore.Extensions;
+﻿using System.Threading.Tasks;
+using JimmyDore.Extensions;
 using JimmyDore.Services.DialogAlert;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 
@@ -7,6 +9,8 @@ namespace JimmyDore.ViewModels
 {
     public class SettingsPageViewModel : ViewModelBase
     {
+        DelegateCommand<string> _onLinkTapped;
+
         public SettingsPageViewModel(
             INavigationService navigationService,
             IJimmyDoreDialogService dialogService,
@@ -14,15 +18,11 @@ namespace JimmyDore.ViewModels
         {
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public DelegateCommand<string> OnLinkTapped => _onLinkTapped ?? (_onLinkTapped = new DelegateCommand<string>(OnLinkClickAsync));
+
+        private async void OnLinkClickAsync(string url)
         {
-            base.OnNavigatedTo(parameters);
-            if (parameters.IsNewNavigation())
-            {
-            }
-            else
-            {
-            }
+            await Xamarin.Essentials.Launcher.OpenAsync(url);
         }
     }
 }
