@@ -125,9 +125,9 @@
                                                TextColor="{Binding Color, Mode=TwoWay}"
                                                Margin="10,0,0,0" VerticalOptions="FillAndExpand" />
                                         <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                                            <Label Text="{Binding Date}" FontSize="Micro" HorizontalOptions="StartAndExpand"
+                                            <Label Text="" FontSize="Micro" HorizontalOptions="StartAndExpand"
                                                 TextColor="Gray" Margin="10,0,5,0" HorizontalTextAlignment="Start" />
-                                            <Label Text="{Binding Views}" FontSize="Micro" HorizontalOptions="EndAndExpand"
+                                            <Label Text="{Binding Date}" FontSize="Micro" HorizontalOptions="EndAndExpand"
                                                 TextColor="Gray" Margin="0,0,5,0" HorizontalTextAlignment="End" />
                                         </StackLayout>
                                     </StackLayout>

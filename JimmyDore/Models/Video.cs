@@ -17,23 +17,23 @@ namespace JimmyDore.Models
         {
             VideoId = videoId;
 
-            if (youTubeService != null)
-            {
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    var stats = await youTubeService.GetStatisticsForVideo(videoId);
+            //if (youTubeService != null)
+            //{
+            //    Device.BeginInvokeOnMainThread(async () =>
+            //    {
+            //        var stats = await youTubeService.GetStatisticsForVideo(videoId);
 
-                    try
-                    {
-                        Views = stats.Views;
-                        Likes = stats.Likes;
-                    }
-                    catch (Exception)
-                    {
+            //        try
+            //        {
+            //            Views = stats.Views;
+            //            Likes = stats.Likes;
+            //        }
+            //        catch (Exception)
+            //        {
 
-                    }
-                });
-            }
+            //        }
+            //    });
+            //}
 
             ResetColor();
         }
