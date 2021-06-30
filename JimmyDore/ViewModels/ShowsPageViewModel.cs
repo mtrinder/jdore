@@ -60,7 +60,20 @@ namespace JimmyDore.ViewModels
         {
             _active = false;
 
-            OnActiveChanged(true);
+            SeparatorColor = "AliceBlue";
+
+            try
+            {
+                IsRefreshing = true;
+
+                await Task.Delay(TimeSpan.FromSeconds(3));
+            }
+            finally
+            {
+                IsRefreshing = false;
+
+                await DialogService.DisplayNoShows();
+            }
         }
 
         protected override async void OnActiveChanged(bool active)
@@ -77,23 +90,18 @@ namespace JimmyDore.ViewModels
 
                 SeparatorColor = "AliceBlue";
 
-                try
-                {
-                    IsRefreshing = true;
+                //try
+                //{
+                //    IsRefreshing = true;
 
-                    await Task.Delay(TimeSpan.FromSeconds(4));
+                //    await Task.Delay(TimeSpan.FromSeconds(4));
+                //}
+                //finally
+                //{
+                //    IsRefreshing = false;
 
-                    //var pods = await RssParse(_url);
-                    //Podcasts = new ObservableRangeCollection<Podcast>(pods);
-                }
-                finally
-                {
-                    IsRefreshing = false;
-
-                    await DialogService.DisplayNoShows();
-
-                    //SeparatorColor = "DarkBlue";
-                }
+                //    await DialogService.DisplayNoShows();
+                //}
             }
         }
     }
