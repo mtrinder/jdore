@@ -47,6 +47,7 @@
     <Folder Include="Controls\" />
     <Folder Include="Video\" />
     <Folder Include="Service\YouTube\" />
+    <Folder Include="Service\Podcast\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="MainPage.xaml.cs" />
@@ -91,6 +92,7 @@
     <None Remove="Xamarin.CommunityToolkit" />
     <None Remove="Images\twitter.png" />
     <None Remove="Images\jd-life-magazine.jpg" />
+    <None Remove="Service\Podcast\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />

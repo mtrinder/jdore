@@ -8,6 +8,7 @@ using FeedParserCore;
 using JimmyDore.Extensions;
 using JimmyDore.Models;
 using JimmyDore.Pages;
+using JimmyDore.Service.Podcasts;
 using JimmyDore.Services.DialogAlert;
 using MvvmHelpers;
 using Prism;
@@ -25,14 +26,14 @@ namespace JimmyDore.ViewModels
         DelegateCommand _onMicButtonPress;
 
         public PodcastPageViewModel(
+            IPodcastService podcastService,
             INavigationService navigationService,
             IJimmyDoreDialogService dialogService,
             IEventAggregator eventAggregator) : base(navigationService, dialogService, eventAggregator)
         {
             SeparatorColor = "DarkBlue";
+            _podcastService = podcastService;
         }
-
-        string _url = "https://thejimmydoreshow.libsyn.com/rss";
 
         ObservableRangeCollection<Podcast> _podcasts = new ObservableRangeCollection<Podcast>();
         public ObservableRangeCollection<Podcast> Podcasts
@@ -57,6 +58,8 @@ namespace JimmyDore.ViewModels
         }
 
         bool _isRefreshing;
+        private readonly IPodcastService _podcastService;
+
         public bool IsRefreshing
         {
             get => _isRefreshing;
@@ -90,13 +93,11 @@ namespace JimmyDore.ViewModels
 
                 try
                 {
-                    IsRefreshing = true;
-                    var pods = await RssParse(_url);
+                    var pods = await _podcastService.RssParse(App.PodcastUrl);
                     Podcasts.AddRange(pods);
                 }
                 finally
                 {
-                    IsRefreshing = false;
                     SeparatorColor = "DarkBlue";
                 }
             }
@@ -114,7 +115,7 @@ namespace JimmyDore.ViewModels
 
             try
             {
-                var pods = await RssParse(_url);
+                var pods = await _podcastService.RssParse(App.PodcastUrl);
 
                 Podcasts.Clear();
 
@@ -125,39 +126,6 @@ namespace JimmyDore.ViewModels
                 IsRefreshing = false;
                 SeparatorColor = "DarkBlue";
             }
-        }
-
-        public async Task<List<Podcast>> RssParse(string url)
-        {
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    var stream = await client.GetStreamAsync(url);
-
-                    var items = await FeedParser.ParseAsync(stream,
-                        xDocument => xDocument.Root
-                            .Descendants()
-                            .Where(i => i.Name.LocalName == "channel")
-                            .Elements()
-                            .Where(i => i.Name.LocalName == "item"),
-                        item => new Podcast
-                        {
-                            Title = item.GetElementValue<string>("title"),
-                            Date = item.GetElementValue<DateTime>("pubDate"),
-                            Description = item.GetElementValue<string>("description"),
-                            Link = (item.Nodes().ToList().FirstOrDefault(n => n.ToString().Contains("enclosure")) as XElement).Attribute("url").Value,
-                        });
-
-                    return items.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-
-            return new List<Podcast>();
         }
 
         async void OnPodcastTapped()

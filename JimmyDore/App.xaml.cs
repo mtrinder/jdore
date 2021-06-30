@@ -16,11 +16,14 @@ using Plugin.FirebasePushNotification;
 using Xamarin.Forms;
 using JimmyDore.Service.YouTube;
 using System.Net.Http;
+using JimmyDore.Service.Podcasts;
 
 namespace JimmyDore
 {
     public partial class App : PrismApplication
     {
+        public static string PodcastUrl = "https://thejimmydoreshow.libsyn.com/rss";
+
         private IEventAggregator _eventAggregator;
 
         public App() : this(null) { }
@@ -45,6 +48,8 @@ namespace JimmyDore
             try
             {
                 Device.BeginInvokeOnMainThread(async () => await Container.Resolve<IYouTubeService>().GetJimmysVideos(true));
+
+                Device.BeginInvokeOnMainThread(async () => await Container.Resolve<IPodcastService>().RssParse(PodcastUrl));
 
                 await NavigationService.NavigateAsync($"{nameof(CurtainsPage)}");
             }
@@ -113,6 +118,7 @@ namespace JimmyDore
             containerRegistry.RegisterSingleton<HttpClient>();
             containerRegistry.RegisterSingleton<IYouTubeService, YouTubeService>();
             containerRegistry.RegisterSingleton<IJimmyDoreDialogService, JimmyDoreDialogService>();
+            containerRegistry.RegisterSingleton<IPodcastService, PodcastService>();
 
             // start
             containerRegistry.RegisterForNavigation<CurtainsPage, CurtainsPageViewModel>();
