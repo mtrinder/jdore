@@ -1,42 +1,49 @@
 {
   "project_info": {
-    "project_number": "445460596305",
-    "project_id": "jimmy-dore-show-21b38",
-    "storage_bucket": "jimmy-dore-show-21b38.appspot.com"
+    "project_number": "675970541782",
+    "project_id": "the-jd-show",
+    "storage_bucket": "the-jd-show.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:445460596305:android:7faf7692baab14072c9a70",
+        "mobilesdk_app_id": "1:675970541782:android:0552edfb48cba68e808177",
         "android_client_info": {
-          "package_name": "com.zapzapz.jimmydore"
+          "package_name": "com.zapzapz.tjds"
         }
       },
       "oauth_client": [
         {
-          "client_id": "445460596305-u946kcln2d5pmjv63icjld4siddiufol.apps.googleusercontent.com",
+          "client_id": "675970541782-1a65rh1fjhvei8s88dg2qtfebvkj71ra.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.zapzapz.jimmydore",
+            "package_name": "com.zapzapz.tjds",
             "certificate_hash": "8591c768c2efeb5969ab0ed119da465056d8b19a"
           }
         },
         {
-          "client_id": "445460596305-193rd47ln0guher5auotonhl06kvslad.apps.googleusercontent.com",
+          "client_id": "675970541782-i2nvo4bs3v31drn0rbqaonrt2quemuub.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAc8kBt04uq-BxotaM1ZI-MeBqOkSvhC6Q"
+          "current_key": "AIzaSyAMyQoOPq6lNq4kmQq2eG_rCjmlKnjHX28"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "445460596305-193rd47ln0guher5auotonhl06kvslad.apps.googleusercontent.com",
+              "client_id": "675970541782-i2nvo4bs3v31drn0rbqaonrt2quemuub.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "675970541782-boe8sokasdon58n53vegvk9om84tse5r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zapzapz.tjds"
+              }
             }
           ]
         }

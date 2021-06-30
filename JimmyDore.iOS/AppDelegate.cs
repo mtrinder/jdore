@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using JimmyDore.Services.DialogAlert;
 using JimmyDore.Enums;
+using UserNotifications;
 
 namespace JimmyDore.iOS
 {
@@ -82,7 +83,7 @@ namespace JimmyDore.iOS
         [Export("applicationWillEnterForeground:")]
         public override void WillEnterForeground(UIApplication application)
         {
-            
+            UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
         }
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
@@ -97,6 +98,7 @@ namespace JimmyDore.iOS
             FirebasePushNotificationManager.RemoteNotificationRegistrationFailed(error);
 
         }
+
         // To receive notifications in foregroung on iOS 9 and below.
         // To receive notifications in background in any iOS version
         public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
@@ -115,6 +117,35 @@ namespace JimmyDore.iOS
             //System.Console.WriteLine(userInfo);
 
             completionHandler(UIBackgroundFetchResult.NewData);
+        }
+
+        // Receive displayed notifications for iOS 10 devices.
+        // Handle incoming notification messages while app is in the foreground.
+        [Export("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
+        public void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler)
+        {
+            var userInfo = notification.Request.Content.UserInfo;
+
+            // With swizzling disabled you must let Messaging know about the message, for Analytics
+            FirebasePushNotificationManager.DidReceiveMessage(userInfo);
+
+            // Print full message.
+            Console.WriteLine(userInfo);
+
+            // Change this to your preferred presentation option
+            completionHandler(UNNotificationPresentationOptions.None);
+        }
+
+        // Handle notification messages after display notification is tapped by the user.
+        [Export("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")]
+        public void DidReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, Action completionHandler)
+        {
+            var userInfo = response.Notification.Request.Content.UserInfo;
+
+            // Print full message.
+            Console.WriteLine(userInfo);
+
+            completionHandler();
         }
     }
 }
