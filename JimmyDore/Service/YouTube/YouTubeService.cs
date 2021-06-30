@@ -16,13 +16,37 @@ namespace JimmyDore.Service.YouTube
         const string uri = "https://youtube.googleapis.com";
         private readonly HttpClient _httpClient;
 
-        string key = "8UTfMLgMdJqFcU4J5GqU7Dd2YcmW3TpHAySazIA";
+        string key;
+
+        string key1 = "4mw3e_NffaO5ScQzq357gbC3y431C7UrDySazIA";
+        string key2 = "oAsCvemIE9RX6JIkiucKSXOgupJ0FgmjAySazIA";
+        string key3 = "UzGl18JS4SdEsXONtwNoKn1h3zqUCU3hCySazIA";
+        string key4 = "oST_8PJ7zRmSkPT2qXo8E9a0ODM2y9B-AySazIA";
+        string key5 = "gHse2v2llaR0tkWkjqEn811eceoHhbs1AySazIA";
+        string key6 = "gwrNfem-tswtX_TeeDMbL_TZkgIoBKJICySazIA";
+        string key7 = "E5Ri7oKOfUvMTSrKxAcgqsEdFRRIPBZqCySazIA";
+
         string jimmysChannel = "UU3M7l8ved_rYQ45AVzS0RGA";
 
         ObservableRangeCollection<Video> _jimmysVideos;
 
         public YouTubeService(HttpClient httpClient)
         {
+            var offset = TimeZoneInfo.Local.BaseUtcOffset;
+            var hours = offset.TotalHours;
+
+            key = key7;
+
+            if (hours <= -3 && hours >= -8)
+            {
+                if (hours <= -3) key = key1;
+                if (hours <= -4) key = key2;
+                if (hours <= -5) key = key3;
+                if (hours <= -6) key = key4;
+                if (hours <= -7) key = key5;
+                if (hours <= -8) key = key6;
+            }
+
             key = new string(key.ToCharArray().Reverse().ToArray());
 
             _httpClient = httpClient;
@@ -74,7 +98,7 @@ namespace JimmyDore.Service.YouTube
                 var video = new Video(this, item.Snippet.ResourceId.VideoId)
                 {
                     Title = item.Snippet.Title + "                    ",
-                    Link = item.Snippet.Thumbnails.Medium.Url,
+                    Link = item.Snippet.Thumbnails.Default.Url,
                     Date = item.Snippet.PublishedAt.ToString("ddd, MMMM dd, yyyy htt"),
                     Funny = item.Snippet.Description.Contains("Performed by Mike MacRae")
                 };
