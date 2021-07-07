@@ -37,7 +37,7 @@ namespace JimmyDore.ViewModels
 
             SeparatorColor = "DarkBlue";
             
-            SegmentStringSource = new[] { "All Videos", "The Funny Ones" };
+            SegmentStringSource = new[] { "All Videos", "Mike MacRae" }; //The Funny Ones
 
             MessagingCenter.Subscribe<IYouTubeService>(this, "Video-Retrieve-Failed", s =>
             {

@@ -12,7 +12,7 @@
             <Color x:Key="greenAlternative">#81B30E</Color>
             <Color x:Key="staffblue">#4A90E2</Color>
             <Color x:Key="darkblue">#01368a</Color>
-            <Color x:Key="warning">#FF4D00</Color>
+            <Color x:Key="warning">#dc1e1e</Color>
             <Color x:Key="pinkText">#de8fab</Color>
             <Color x:Key="blueText">#40a7da</Color>
             <Color x:Key="redText">#f94c07</Color>
@@ -22,7 +22,7 @@
             <Color x:Key="positiveBlue">#58bdb4</Color>
             <Color x:Key="greyNavbar">#38474f</Color>
             <Color x:Key="defaultText">#333333</Color>
-            <Color x:Key="brown">#984b0b</Color>
+            <Color x:Key="brown">#bf6011</Color>
 
             <Color x:Key="navBarTextColour">#373737</Color>
             

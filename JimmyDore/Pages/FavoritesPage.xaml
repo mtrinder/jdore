@@ -33,7 +33,7 @@
                         HorizontalOptions="Start"
                         HeightRequest="100"
                         WidthRequest="100"
-                        Margin="30,50,0,20" /> 
+                        Margin="30,50,-20,20" /> 
 
                 <StackLayout Orientation="Vertical"
                              HorizontalOptions="CenterAndExpand">
@@ -43,7 +43,7 @@
                            VerticalTextAlignment="End"
                            HorizontalTextAlignment="Start"
                            FontSize="Large"
-                           Padding="0,20,0,0"
+                           Padding="15,20,0,0"
                            Text="My Favorites" />
 
                     <StackLayout Orientation="Horizontal" 

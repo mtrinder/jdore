@@ -15,7 +15,7 @@
         </OnPlatform>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid BackgroundColor="White">
+        <Grid BackgroundColor="AliceBlue">
             <Grid.RowDefinitions>
                 <RowDefinition Height="180"/>
                 <RowDefinition Height="*"/>
@@ -25,7 +25,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Orientation="Horizontal"
-                BackgroundColor="{StaticResource mediumGrey}"
+                BackgroundColor="{StaticResource brown}"
                 VerticalOptions="FillAndExpand">
 
                 <Image Source="{ext:ImageResource JimmyDore.Images.jd-settings.png}"
@@ -33,9 +33,10 @@
                         HorizontalOptions="Start"
                         HeightRequest="100"
                         WidthRequest="100"
-                        Margin="30,50,0,20" /> 
+                        Margin="30,50,-15,20" /> 
 
-                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="CenterAndExpand">
                     <Label Style="{StaticResource pageTitle}"
                            VerticalOptions="FillAndExpand"
                            HorizontalOptions="FillAndExpand"
@@ -51,8 +52,8 @@
                                VerticalOptions="StartAndExpand"
                                HorizontalOptions="FillAndExpand"
                                HorizontalTextAlignment="Start"
-                               Margin="0" FontSize="Small"
-                               Text="All you need to know about TJDS" />
+                               Margin="25,0,0,0" FontSize="Small"
+                               Text="Information about TJDS" />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
@@ -61,28 +62,23 @@
                         HorizontalOptions="FillAndExpand"
                         Grid.Row="1"
                         Grid.Column="0"
-                        BackgroundColor="White"
+                        BackgroundColor="AliceBlue"
                         VerticalOptions="FillAndExpand">
                 <StackLayout>
-                    <Label HorizontalOptions="Start"
-                           VerticalOptions="Start"
-                           HorizontalTextAlignment="Start"
-                           FontSize="Medium"
-                           Margin="30,15,25,0"
-                           FontFamily="{StaticResource PlatformFontName}"
-                           Text="TJDS is a hilarious and irreverent take on news, politics and culture featuring Jimmy Dore, a professional stand up comedian, author and podcaster." />
                     <Label HorizontalOptions="FillAndExpand"
                            VerticalOptions="Start"
                            HorizontalTextAlignment="Center"
                            Margin="25"
-                           FontSize="Medium"
+                           FontSize="Header"
                            FontFamily="{StaticResource PlatformFontName}" >
 
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="www.jimmydorecomedy.com"
-                                      TextColor="{StaticResource staffblue}"
-                                      TextDecorations="Underline">
+                                <!--<Span Text="Go to " TextColor="{StaticResource darkblue}" />-->
+                                <Span Text="🔗 www.jimmydorecomedy.com 🔗"
+                                      TextColor="{StaticResource darkblue}"
+                                      FontSize="Medium"
+                                      TextDecorations="None">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                               CommandParameter="https://jimmydorecomedy.com/" />
@@ -90,11 +86,16 @@
                                 </Span>
                             </FormattedString>
                         </Label.FormattedText>
-
-
                     </Label>
+                    <Label HorizontalOptions="Start"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Center"
+                           FontSize="Medium"
+                           Margin="30,0,25,20"
+                           FontFamily="{StaticResource PlatformFontName}"
+                           Text="TJDS is a hilarious and irreverent take on news, politics and culture featuring Jimmy Dore, a professional stand up comedian, author and podcaster." />
 
-                    <Grid Margin="40,10,20,20" HorizontalOptions="CenterAndExpand">
+                    <Grid Margin="20,10,20,20" HorizontalOptions="CenterAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
@@ -111,9 +112,9 @@
                                Grid.Column="1">
                                <Label.FormattedText>
                                    <FormattedString>
-                                       <Span Text="Join the Email list"
-                                             TextColor="{StaticResource staffblue}"
-                                             TextDecorations="None">
+                                       <Span Text="Join our Email List"
+                                             TextColor="{StaticResource darkblue}"
+                                             TextDecorations="Underline">
                                            <Span.GestureRecognizers>
                                                <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                      CommandParameter="https://mailchi.mp/jimmydorecomedy/ytlivestreams/" />
@@ -130,8 +131,8 @@
                                <Label.FormattedText>
                                    <FormattedString>
                                        <Span Text="Access Premium Content"
-                                             TextColor="{StaticResource staffblue}"
-                                             TextDecorations="None">
+                                             TextColor="{StaticResource darkblue}"
+                                             TextDecorations="Underline">
                                            <Span.GestureRecognizers>
                                                <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                      CommandParameter="https://jimmydorecomedy.com/membership-account/membership-levels/" />
@@ -148,8 +149,8 @@
                            <Label.FormattedText>
                                <FormattedString>
                                    <Span Text="Make a Donation"
-                                         TextColor="{StaticResource staffblue}"
-                                         TextDecorations="None">
+                                         TextColor="{StaticResource darkblue}"
+                                         TextDecorations="Underline">
                                        <Span.GestureRecognizers>
                                            <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                  CommandParameter="https://jimmydorecomedy.com/donate/" />
@@ -165,9 +166,9 @@
                                Grid.Column="1" Grid.Row="3" >
                                <Label.FormattedText>
                                    <FormattedString>
-                                       <Span Text="Buy Official Merch"
-                                             TextColor="{StaticResource staffblue}"
-                                             TextDecorations="None">
+                                       <Span Text="Buy Official Merchandise"
+                                             TextColor="{StaticResource darkblue}"
+                                             TextDecorations="Underline">
                                            <Span.GestureRecognizers>
                                                <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                      CommandParameter="https://jimmydorecomedy.com/store/" />
@@ -194,8 +195,8 @@
                            <Label.FormattedText>
                                <FormattedString>
                                    <Span Text="   Jimmy Dore"
-                                         TextColor="{StaticResource staffblue}"
-                                         TextDecorations="None">
+                                         TextColor="{StaticResource darkblue}"
+                                         TextDecorations="Underline">
                                        <Span.GestureRecognizers>
                                            <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                  CommandParameter="https://twitter.com/Jimmy_Dore" />
@@ -211,8 +212,8 @@
                            <Label.FormattedText>
                                <FormattedString>
                                    <Span Text="Stef Zamorano"
-                                         TextColor="{StaticResource staffblue}"
-                                         TextDecorations="None">
+                                         TextColor="{StaticResource darkblue}"
+                                         TextDecorations="Underline">
                                        <Span.GestureRecognizers>
                                            <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                  CommandParameter="https://twitter.com/miserablelib" />

@@ -57,12 +57,6 @@ namespace JimmyDore.ViewModels
             {
                 _active = true;
 
-                if (Xamarin.Essentials.Connectivity.NetworkAccess == Xamarin.Essentials.NetworkAccess.None)
-                {
-                    await DialogService.DisplayAlertWithOk("Internet?", "Please check your connection then swipe down to refresh.");
-                    return;
-                }
-
                 SeparatorColor = "AliceBlue";
 
                 try
@@ -144,6 +138,12 @@ namespace JimmyDore.ViewModels
                     { NavigationParameterKeys.Title, ChannelSelected.ShortTitle },
                     { NavigationParameterKeys.ChannelId, ChannelSelected.Id },
                 };
+
+                if (Xamarin.Essentials.Connectivity.NetworkAccess == Xamarin.Essentials.NetworkAccess.None)
+                {
+                    await DialogService.DisplayAlertWithOk("Internet?", "Please check your connection then try again.");
+                    return;
+                }
 
                 await NavigationService.NavigateAsync($"{nameof(ChannelPage)}", navParams);
 
