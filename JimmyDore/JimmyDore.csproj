@@ -91,8 +91,11 @@
     <None Remove="Plugin.MediaManager.Forms" />
     <None Remove="Xamarin.CommunityToolkit" />
     <None Remove="Images\twitter.png" />
-    <None Remove="Images\jd-life-magazine.jpg" />
     <None Remove="Service\Podcast\" />
+    <None Remove="Images\settings.png" />
+    <None Remove="Images\check-mark-circle.png" />
+    <None Remove="Images\jd-news.png" />
+    <None Remove="Images\new-alert.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\jimmydore.mp3" />
@@ -118,7 +121,10 @@
     <EmbeddedResource Include="Images\play-icon.png" />
     <EmbeddedResource Include="Images\jd-podcast.png" />
     <EmbeddedResource Include="Images\twitter.png" />
-    <EmbeddedResource Include="Images\jd-life-magazine.jpg" />
+    <EmbeddedResource Include="Images\settings.png" />
+    <EmbeddedResource Include="Images\check-mark-circle.png" />
+    <EmbeddedResource Include="Images\jd-news.png" />
+    <EmbeddedResource Include="Images\new-alert.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

@@ -19,7 +19,7 @@
                  BackgroundColor="Transparent"
                  BorderColor="Transparent"
                  Grid.Column="0">
-                <Image Source="{ext:ImageResource JimmyDore.Images.circle-down.png}"
+                <Image Source="{ext:ImageResource JimmyDore.Images.close-round-line.png}"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
                            HeightRequest="30"

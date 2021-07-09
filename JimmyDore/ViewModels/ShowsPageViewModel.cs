@@ -67,6 +67,8 @@ namespace JimmyDore.ViewModels
                 IsRefreshing = true;
 
                 await Task.Delay(TimeSpan.FromSeconds(3));
+
+                //SeparatorColor = "#50b166";
             }
             finally
             {

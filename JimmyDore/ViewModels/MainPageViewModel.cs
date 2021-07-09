@@ -35,9 +35,9 @@ namespace JimmyDore.ViewModels
 
             _youTubeService = youTubeService;
 
-            SeparatorColor = "DarkBlue";
+            SeparatorColor = "#01368a";
             
-            SegmentStringSource = new[] { "All Videos", "Mike MacRae" }; //The Funny Ones
+            SegmentStringSource = new[] { "All Videos", "With Mike MacRae" }; //The Funny Ones
 
             MessagingCenter.Subscribe<IYouTubeService>(this, "Video-Retrieve-Failed", s =>
             {
@@ -45,7 +45,7 @@ namespace JimmyDore.ViewModels
                 {
                     IsRefreshing = false;
                     SegmentedEnabled = true;
-                    SeparatorColor = "DarkBlue";
+                    SeparatorColor = "#01368a";
                 });
             });
         }
@@ -203,7 +203,7 @@ namespace JimmyDore.ViewModels
 
                 IsRefreshing = false;
                 SegmentedEnabled = true;
-                SeparatorColor = "DarkBlue";
+                SeparatorColor = "#01368a";
             }
             finally
             {

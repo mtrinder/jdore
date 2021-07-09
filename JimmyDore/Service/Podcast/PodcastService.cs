@@ -38,7 +38,7 @@ namespace JimmyDore.Service.Podcasts
                         item => new Podcast
                         {
                             Title = item.GetElementValue<string>("title"),
-                            Date = item.GetElementValue<DateTime>("pubDate"),
+                            Date = item.GetElementValue<DateTime>("pubDate").ToString("ddd, MMMM dd, yyyy htt"),
                             Description = item.GetElementValue<string>("description"),
                             Link = (item.Nodes().ToList().FirstOrDefault(n => n.ToString().Contains("enclosure")) as XElement).Attribute("url").Value,
                         });

@@ -1,9 +1,130 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="JimmyDore.Pages.NewsPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:ext="clr-namespace:JimmyDore.Extensions"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="News"
+             x:Class="JimmyDore.Pages.NewsPage">
+
+    <ContentPage.Resources>
+        <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Serif"></On>
+            <On Platform="iOS" Value="EuphemiaUCAS"></On>
+        </OnPlatform>
+        <OnPlatform x:Key="PlatformFontSize" x:TypeArguments="x:Double">
+            <On Platform="Android" Value="18"></On>
+            <On Platform="iOS" Value="20"></On>
+        </OnPlatform>
+        <OnPlatform x:Key="ListTitleFontName" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Serif"></On>
+            <On Platform="iOS" Value="PingFangTC-Light"></On>
+        </OnPlatform>
+        <OnPlatform x:Key="ListTitleFontSize" x:TypeArguments="x:Double">
+            <On Platform="Android" Value="14"></On>
+            <On Platform="iOS" Value="16"></On>
+        </OnPlatform>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        
+        <Grid BackgroundColor="AliceBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="0"
+                Orientation="Horizontal"
+                BackgroundColor="#c0902e"
+                VerticalOptions="FillAndExpand">
+
+                <Image Source="{ext:ImageResource JimmyDore.Images.jd-news.png}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Margin="30,50,15,20" />
+
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+
+                    <Label Style="{StaticResource pageTitle}"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="Start"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Start"
+                           Margin="0,40,0,20"
+                           FontSize="{StaticResource PlatformFontSize}"
+                           FontFamily="{StaticResource PlatformFontName}"
+                           Text="NEWS ALERTS" />
+
+                    <Button Style="{StaticResource pageTitle}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            Margin="0,20,0,0"
+                            Command="{Binding OnYouTubeButtonPress}"
+                            BackgroundColor="Transparent"
+                            ImageSource="{ext:ImageResource JimmyDore.Images.action-out.png}" />
+                </StackLayout>
+
+                <Button Style="{StaticResource pageTitle}"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Start"
+                        Margin="0,40,10,0"
+                        Command="{Binding OnSettingsButtonPress}"
+                        BackgroundColor="Transparent"
+                        ImageSource="{ext:ImageResource JimmyDore.Images.settings.png}" />
+
+            </StackLayout>
+
+
+            <ListView Grid.Row="1" x:Name="NewsList"
+                      Grid.Column="0"
+                      IsVisible="{Binding ShowList}"
+                      HasUnevenRows="True"
+                      SelectionMode="Single"
+                      BackgroundColor="AliceBlue"
+                      RefreshControlColor="{StaticResource darkblue}"
+                      IsPullToRefreshEnabled="True"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      RefreshCommand="{Binding ListRefreshCommand}"
+                      SeparatorColor="{Binding SeparatorColor}"
+                      SelectedItem="{Binding AlertSelected, Mode=TwoWay}"
+                      ItemsSource="{Binding NewItems}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="90">
+                            <StackLayout Orientation="Vertical" >
+                                <StackLayout HeightRequest="90" Orientation="Horizontal"
+                                             VerticalOptions="CenterAndExpand"
+                                             Margin="1">
+                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Image Margin="1" WidthRequest="90" HeightRequest="60" Source="{ext:ImageResource JimmyDore.Images.new-alert.png}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Margin="0,0,5,0">
+                                        <Label Text="{Binding Title}"
+                                               FontFamily="{StaticResource ListTitleFontName}"
+                                               FontSize="{StaticResource ListTitleFontSize}"
+                                               HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"
+                                               TextColor="{Binding Color, Mode=TwoWay}"
+                                               Margin="2,0,0,0" VerticalOptions="FillAndExpand" />
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                                            <Label Text="{Binding Date}" FontSize="Micro"
+                                                   FontFamily="{StaticResource ListTitleFontName}"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   TextColor="Gray" Margin="0,-3,5,0"
+                                                   HorizontalTextAlignment="End" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

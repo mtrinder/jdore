@@ -26,7 +26,7 @@ namespace JimmyDore.ViewModels
             IJimmyDoreDialogService dialogService,
             IEventAggregator eventAggregator) : base(navigationService, dialogService, eventAggregator)
         {
-            SeparatorColor = "DarkBlue";
+            SeparatorColor = "#dc1e1e";
         }
 
         ObservableRangeCollection<Favorite> _channels = new ObservableRangeCollection<Favorite>();
@@ -115,7 +115,7 @@ namespace JimmyDore.ViewModels
                 }
                 finally
                 {
-                    SeparatorColor = "DarkBlue";
+                    SeparatorColor = "#dc1e1e";
                 }
             }
         }

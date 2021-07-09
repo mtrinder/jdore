@@ -11,21 +11,25 @@
     <ContentPage.Resources>
         <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
             <On Platform="Android" Value="Serif"></On>
-            <On Platform="iOS" Value="Helvetica"></On>
+            <On Platform="iOS" Value="EuphemiaUCAS"></On>
+        </OnPlatform>
+        <OnPlatform x:Key="PlatformFontSize" x:TypeArguments="x:Double">
+            <On Platform="Android" Value="18"></On>
+            <On Platform="iOS" Value="22"></On>
         </OnPlatform>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid BackgroundColor="AliceBlue">
+        <Grid BackgroundColor="{StaticResource navBarTextColour}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="180"/>
+                <RowDefinition Height="160"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="70" />
+                <!--<RowDefinition Height="70" />-->
             </Grid.RowDefinitions>
             <StackLayout
                 Grid.Row="0"
                 Grid.Column="0"
                 Orientation="Horizontal"
-                BackgroundColor="{StaticResource brown}"
+                BackgroundColor="{StaticResource navBarTextColour}"
                 VerticalOptions="FillAndExpand">
 
                 <Image Source="{ext:ImageResource JimmyDore.Images.jd-settings.png}"
@@ -33,20 +37,23 @@
                         HorizontalOptions="Start"
                         HeightRequest="100"
                         WidthRequest="100"
-                        Margin="30,50,-15,20" /> 
+                        Margin="30,50,15,20" /> 
 
-                <StackLayout Orientation="Vertical"
-                             HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+
                     <Label Style="{StaticResource pageTitle}"
                            VerticalOptions="FillAndExpand"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalTextAlignment="End"
+                           HorizontalOptions="Start"
+                           VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start"
-                           FontSize="Large"
-                           Padding="0,20,0,0"
-                           Text="The Jimmy Dore Show" />
+                           Margin="0,40,0,20"
+                           FontSize="{StaticResource PlatformFontSize}"
+                           FontFamily="{StaticResource PlatformFontName}"
+                           Text="ABOUT TJDS" />
 
-                    <StackLayout Orientation="Horizontal" 
+                    <!--<StackLayout Orientation="Horizontal" 
                                  VerticalOptions="FillAndExpand">
                         <Label Style="{StaticResource pageTitle}"
                                VerticalOptions="StartAndExpand"
@@ -54,48 +61,60 @@
                                HorizontalTextAlignment="Start"
                                Margin="25,0,0,0" FontSize="Small"
                                Text="Information about TJDS" />
-                    </StackLayout>
+                    </StackLayout>-->
                 </StackLayout>
+
+                <Button Style="{StaticResource pageTitle}"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Start"
+                        Margin="0,40,10,0"
+                        Command="{Binding OnSettingsCloseButtonPress}"
+                        BackgroundColor="Transparent"
+                        ImageSource="{ext:ImageResource JimmyDore.Images.check-mark-circle.png}" />
+
             </StackLayout>
             
             <ScrollView Orientation="Vertical"
                         HorizontalOptions="FillAndExpand"
                         Grid.Row="1"
                         Grid.Column="0"
-                        BackgroundColor="AliceBlue"
+                        BackgroundColor="{StaticResource navBarTextColour}"
                         VerticalOptions="FillAndExpand">
                 <StackLayout>
+                    <Label HorizontalOptions="Start"
+                           VerticalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           FontSize="Medium"
+                           TextColor="{StaticResource lightGrey}"
+                           Margin="25,0,25,0"
+                           FontFamily="{StaticResource PlatformFontName}"
+                           Text="The Jimmy Dore Show is a hilarious and irreverent take on news, politics and culture featuring Jimmy Dore, a professional stand up comedian, author and podcaster." />
+
                     <Label HorizontalOptions="FillAndExpand"
                            VerticalOptions="Start"
-                           HorizontalTextAlignment="Center"
+                           HorizontalTextAlignment="Start"
                            Margin="25"
                            FontSize="Header"
                            FontFamily="{StaticResource PlatformFontName}" >
 
                         <Label.FormattedText>
                             <FormattedString>
-                                <!--<Span Text="Go to " TextColor="{StaticResource darkblue}" />-->
-                                <Span Text="🔗 www.jimmydorecomedy.com 🔗"
-                                      TextColor="{StaticResource darkblue}"
+                                <Span Text="✢ " TextColor="{StaticResource lightGrey}" />
+                                <Span Text="www.jimmydorecomedy.com"
+                                      TextColor="{StaticResource lightGrey}"
                                       FontSize="Medium"
-                                      TextDecorations="None">
+                                      TextDecorations="Underline">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                               CommandParameter="https://jimmydorecomedy.com/" />
                                     </Span.GestureRecognizers>
                                 </Span>
+                                <Span Text=" ↗︎" TextColor="{StaticResource lightGrey}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label HorizontalOptions="Start"
-                           VerticalOptions="Start"
-                           HorizontalTextAlignment="Center"
-                           FontSize="Medium"
-                           Margin="30,0,25,20"
-                           FontFamily="{StaticResource PlatformFontName}"
-                           Text="TJDS is a hilarious and irreverent take on news, politics and culture featuring Jimmy Dore, a professional stand up comedian, author and podcaster." />
 
-                    <Grid Margin="20,10,20,20" HorizontalOptions="CenterAndExpand">
+                    <Grid Margin="35,10,20,20" HorizontalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
                             <RowDefinition Height="30" />
@@ -103,77 +122,86 @@
                             <RowDefinition Height="30" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Text="✉️" FontSize="Small" HorizontalTextAlignment="End" />
-                        <Label HorizontalTextAlignment="Start" FontSize="Small" FontFamily="{StaticResource PlatformFontName}"
+                        <Label Grid.Column="0" Text="✢" TextColor="{StaticResource lightGrey}"
+                               FontSize="Small" HorizontalTextAlignment="Start" />
+                        <Label HorizontalTextAlignment="Start" FontSize="Small"
+                               FontFamily="{StaticResource PlatformFontName}"
                                Grid.Column="1">
                                <Label.FormattedText>
                                    <FormattedString>
-                                       <Span Text="Join our Email List"
-                                             TextColor="{StaticResource darkblue}"
+                                       <Span Text="Join our email list"
+                                             TextColor="{StaticResource lightGrey}"
                                              TextDecorations="Underline">
                                            <Span.GestureRecognizers>
                                                <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                      CommandParameter="https://mailchi.mp/jimmydorecomedy/ytlivestreams/" />
                                            </Span.GestureRecognizers>
                                        </Span>
+                                       <Span Text=" ↗︎" TextColor="{StaticResource lightGrey}" />
                                    </FormattedString>
                                </Label.FormattedText>
                         </Label>
 
-                        <Label Grid.Column="0" Grid.Row="1" Text="⭐" FontSize="Small" HorizontalTextAlignment="End" />
+                        <Label Grid.Column="0" Grid.Row="1" Text="✢" TextColor="{StaticResource lightGrey}"
+                               FontSize="Small" HorizontalTextAlignment="Start" />
                         <Label HorizontalTextAlignment="Start" FontSize="Small" 
                                FontFamily="{StaticResource PlatformFontName}"
                                Grid.Column="1" Grid.Row="1" >
                                <Label.FormattedText>
                                    <FormattedString>
-                                       <Span Text="Access Premium Content"
-                                             TextColor="{StaticResource darkblue}"
+                                       <Span Text="Access premium content"
+                                             TextColor="{StaticResource lightGrey}"
                                              TextDecorations="Underline">
                                            <Span.GestureRecognizers>
                                                <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                      CommandParameter="https://jimmydorecomedy.com/membership-account/membership-levels/" />
                                            </Span.GestureRecognizers>
                                        </Span>
+                                       <Span Text=" ↗︎" TextColor="{StaticResource lightGrey}" />
                                    </FormattedString>
                                </Label.FormattedText>
                         </Label>
 
-                        <Label Grid.Column="0" Grid.Row="2" Text="💝" FontSize="Small" HorizontalTextAlignment="End" />
+                        <Label Grid.Column="0" Grid.Row="2" Text="✢" TextColor="{StaticResource lightGrey}"
+                               FontSize="Small" HorizontalTextAlignment="Start" />
                         <Label HorizontalTextAlignment="Start" FontSize="Small"
                            FontFamily="{StaticResource PlatformFontName}"
                            Grid.Column="1" Grid.Row="2" >
                            <Label.FormattedText>
                                <FormattedString>
-                                   <Span Text="Make a Donation"
-                                         TextColor="{StaticResource darkblue}"
+                                   <Span Text="Make a donation"
+                                         TextColor="{StaticResource lightGrey}"
                                          TextDecorations="Underline">
                                        <Span.GestureRecognizers>
                                            <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                  CommandParameter="https://jimmydorecomedy.com/donate/" />
                                        </Span.GestureRecognizers>
                                    </Span>
+                                   <Span Text=" ↗︎" TextColor="{StaticResource lightGrey}" />
                                </FormattedString>
                            </Label.FormattedText>
                         </Label>
 
-                        <Label Grid.Column="0" Grid.Row="3" Text="🛒" FontSize="Small" HorizontalTextAlignment="End" />
+                        <Label Grid.Column="0" Grid.Row="3" Text="✢" TextColor="{StaticResource lightGrey}"
+                               FontSize="Small" HorizontalTextAlignment="Start" />
                         <Label HorizontalTextAlignment="Start" FontSize="Small"
                                FontFamily="{StaticResource PlatformFontName}"
                                Grid.Column="1" Grid.Row="3" >
                                <Label.FormattedText>
                                    <FormattedString>
-                                       <Span Text="Buy Official Merchandise"
-                                             TextColor="{StaticResource darkblue}"
+                                       <Span Text="Buy official merchandise"
+                                             TextColor="{StaticResource lightGrey}"
                                              TextDecorations="Underline">
                                            <Span.GestureRecognizers>
                                                <TapGestureRecognizer Command="{Binding OnLinkTapped}"
                                                                      CommandParameter="https://jimmydorecomedy.com/store/" />
                                            </Span.GestureRecognizers>
                                        </Span>
+                                       <Span Text=" ↗︎" TextColor="{StaticResource lightGrey}" />
                                    </FormattedString>
                                </Label.FormattedText>
                         </Label>
@@ -195,7 +223,7 @@
                            <Label.FormattedText>
                                <FormattedString>
                                    <Span Text="   Jimmy Dore"
-                                         TextColor="{StaticResource darkblue}"
+                                         TextColor="{StaticResource lightGrey}"
                                          TextDecorations="Underline">
                                        <Span.GestureRecognizers>
                                            <TapGestureRecognizer Command="{Binding OnLinkTapped}"
@@ -212,7 +240,7 @@
                            <Label.FormattedText>
                                <FormattedString>
                                    <Span Text="Stef Zamorano"
-                                         TextColor="{StaticResource darkblue}"
+                                         TextColor="{StaticResource lightGrey}"
                                          TextDecorations="Underline">
                                        <Span.GestureRecognizers>
                                            <TapGestureRecognizer Command="{Binding OnLinkTapped}"
@@ -225,7 +253,7 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <Frame Padding="8"
+            <!--<Frame Padding="8"
                    Grid.Row="2"
                    Grid.Column="0"
                    WidthRequest="65"
@@ -238,7 +266,7 @@
                     AutoPlay="True"
                     Speed="0.75"
                     IsVisible="True"/>
-             </Frame>
+             </Frame>-->
 
         </Grid>
     </ContentPage.Content>

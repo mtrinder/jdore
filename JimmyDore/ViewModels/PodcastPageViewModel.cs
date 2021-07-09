@@ -31,7 +31,7 @@ namespace JimmyDore.ViewModels
             IJimmyDoreDialogService dialogService,
             IEventAggregator eventAggregator) : base(navigationService, dialogService, eventAggregator)
         {
-            SeparatorColor = "DarkBlue";
+            SeparatorColor = "#8e79d9";
             _podcastService = podcastService;
         }
 
@@ -98,7 +98,7 @@ namespace JimmyDore.ViewModels
                 }
                 finally
                 {
-                    SeparatorColor = "DarkBlue";
+                    SeparatorColor = "#8e79d9";
                 }
             }
         }
@@ -124,7 +124,7 @@ namespace JimmyDore.ViewModels
             finally
             {
                 IsRefreshing = false;
-                SeparatorColor = "DarkBlue";
+                SeparatorColor = "#8e79d9";
             }
         }
 

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 //using JimmyDore.Events;
 using JimmyDore.Extensions;
+using JimmyDore.Pages;
 using JimmyDore.Services.DialogAlert;
 using Prism;
 //using JimmyDore.Services.Logging;
@@ -19,18 +20,24 @@ namespace JimmyDore.ViewModels
     {
         protected INavigationService NavigationService { get; }
         protected IEventAggregator EventAggregator { get; }
-        //protected ILoggingService LoggingService { get; }
         protected IJimmyDoreDialogService DialogService { get; }
-        private string _pageTitle;
-        private bool _isBusy;
-        private bool _isLocked;
-        private int _commandLock;
-        private Task _executeCommandTask;
-        private bool _isDetecting;
-        private DelegateCommand _navigateBackCommand;
-        private DelegateCommand _closeCommand;
-        private DelegateCommand _toggleMasterPageCommand;
-        private bool _isVisibleBackButton = true;
+        //protected ILoggingService LoggingService { get; }
+
+        string _pageTitle;
+
+        bool _isBusy;
+        bool _isLocked;
+        bool _isDetecting;
+        bool _isVisibleBackButton = true;
+
+        int _commandLock;
+
+        Task _executeCommandTask;
+
+        DelegateCommand _navigateBackCommand;
+        DelegateCommand _closeCommand;
+        DelegateCommand _toggleMasterPageCommand;
+        DelegateCommand _settingsButtonPress;
 
         public event EventHandler IsActiveChanged;
 
@@ -93,6 +100,7 @@ namespace JimmyDore.ViewModels
             get => _isLocked;
             set => SetProperty(ref _isLocked, value);
         }
+
         public DelegateCommand ToggleMasterPageCommand =>
             _toggleMasterPageCommand ?? (_toggleMasterPageCommand = new DelegateCommand(ExecuteToggleMasterPageCommand));
 
@@ -166,6 +174,17 @@ namespace JimmyDore.ViewModels
             //LoggingService.Trace("{type} {method}", GetType().Name, nameof(Destroy));
 
         }
+
+        public DelegateCommand OnSettingsButtonPress => _settingsButtonPress ?? (_settingsButtonPress = new DelegateCommand(async () => await ExecuteTaskInLockAsync(OnYouTubeAsync), CanExecute)
+            .ObservesProperty(() => IsBusy).ObservesProperty(() => IsLocked));
+
+        private async Task OnYouTubeAsync()
+        {
+            var navParams = new NavigationParameters { };
+
+            await NavigationService.NavigateAsync($"{nameof(SettingsPage)}", navParams);
+        }
+
         // Alerting Methods
 
         public async Task DisplayNoShows()

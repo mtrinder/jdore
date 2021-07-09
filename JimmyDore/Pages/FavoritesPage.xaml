@@ -12,13 +12,25 @@
     <ContentPage.Resources>
         <OnPlatform x:Key="PlatformFontName" x:TypeArguments="x:String">
             <On Platform="Android" Value="Serif"></On>
-            <On Platform="iOS" Value="Helvetica"></On>
+            <On Platform="iOS" Value="EuphemiaUCAS"></On>
+        </OnPlatform>
+        <OnPlatform x:Key="PlatformFontSize" x:TypeArguments="x:Double">
+            <On Platform="Android" Value="18"></On>
+            <On Platform="iOS" Value="20"></On>
+        </OnPlatform>
+        <OnPlatform x:Key="ListTitleFontName" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Serif"></On>
+            <On Platform="iOS" Value="PingFangTC-Light"></On>
+        </OnPlatform>
+        <OnPlatform x:Key="ListTitleFontSize" x:TypeArguments="x:Double">
+            <On Platform="Android" Value="14"></On>
+            <On Platform="iOS" Value="16"></On>
         </OnPlatform>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid BackgroundColor="AliceBlue">
             <Grid.RowDefinitions>
-                <RowDefinition Height="180"/>
+                <RowDefinition Height="160"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackLayout
@@ -33,29 +45,32 @@
                         HorizontalOptions="Start"
                         HeightRequest="100"
                         WidthRequest="100"
-                        Margin="30,50,-20,20" /> 
+                        Margin="30,50,15,20" /> 
 
-                <StackLayout Orientation="Vertical"
-                             HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+
                     <Label Style="{StaticResource pageTitle}"
                            VerticalOptions="FillAndExpand"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalTextAlignment="End"
+                           HorizontalOptions="Start"
+                           VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Start"
-                           FontSize="Large"
-                           Padding="15,20,0,0"
-                           Text="My Favorites" />
+                           Margin="10,40,0,20"
+                           FontSize="{StaticResource PlatformFontSize}"
+                           FontFamily="{StaticResource PlatformFontName}"
+                           Text="MY FAVORITE PROGRESSIVES" />
 
-                    <StackLayout Orientation="Horizontal" 
-                                 VerticalOptions="FillAndExpand">
-                        <Label Style="{StaticResource pageTitle}"
-                               VerticalOptions="StartAndExpand"
-                               HorizontalOptions="FillAndExpand"
-                               HorizontalTextAlignment="Start"
-                               Margin="0" FontSize="Small"
-                               Text="Progressives on YouTube" />
-                    </StackLayout>
                 </StackLayout>
+
+                <Button Style="{StaticResource pageTitle}"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Start"
+                        Margin="0,40,10,0"
+                        Command="{Binding OnSettingsButtonPress}"
+                        BackgroundColor="Transparent"
+                        ImageSource="{ext:ImageResource JimmyDore.Images.settings.png}" />
+
             </StackLayout>
 
             <ListView Grid.Row="1" x:Name="ChannelsList"
@@ -75,11 +90,15 @@
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                         <Image Margin="2" WidthRequest="100" HeightRequest="60" Source="{Binding Link}" />
                                     </StackLayout>
-                                    <StackLayout Orientation="Vertical">
-                                        <Label Text="{Binding Title}" FontSize="Medium"
+                                    <StackLayout Orientation="Vertical"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Margin="0,0,5,0">
+                                        <Label Text="{Binding Title}"
+                                               FontFamily="{StaticResource ListTitleFontName}"
+                                               FontSize="{StaticResource ListTitleFontSize}"
                                                HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"
                                                TextColor="{Binding Color, Mode=TwoWay}"
-                                               Margin="10,0,0,0" VerticalOptions="FillAndExpand" />
+                                               Margin="2,0,0,0" VerticalOptions="FillAndExpand" />
                                         <!--<StackLayout Orientation="Horizontal" VerticalOptions="End">
                                             <Label Text="{Binding Date}" FontSize="Micro" HorizontalOptions="StartAndExpand"
                                                 TextColor="Gray" Margin="10,0,5,0" HorizontalTextAlignment="Start" />

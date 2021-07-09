@@ -11,5 +11,12 @@ namespace JimmyDore.Pages
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Device.BeginInvokeOnMainThread(() => NewsList.SelectedItem = null);
+        }
     }
 }
