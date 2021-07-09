@@ -48,7 +48,7 @@
                       Grid.Column="2"
                       BackgroundColor="Transparent"
                       Text="OK"
-                      TextColor="{StaticResource greenText}"
+                      TextColor="{StaticResource defaultText}"
                       FontAttributes="Bold"
                       Clicked="OnAcceptButtonClicked">
 

@@ -59,13 +59,13 @@
                            FontFamily="{StaticResource PlatformFontName}"
                            Text="NEWS ALERTS" />
 
-                    <Button Style="{StaticResource pageTitle}"
+                    <!--<Button Style="{StaticResource pageTitle}"
                             VerticalOptions="Center"
                             HorizontalOptions="Start"
                             Margin="0,20,0,0"
                             Command="{Binding OnYouTubeButtonPress}"
                             BackgroundColor="Transparent"
-                            ImageSource="{ext:ImageResource JimmyDore.Images.action-out.png}" />
+                            ImageSource="{ext:ImageResource JimmyDore.Images.action-out.png}" />-->
                 </StackLayout>
 
                 <Button Style="{StaticResource pageTitle}"

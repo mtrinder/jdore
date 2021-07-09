@@ -112,7 +112,7 @@ namespace JimmyDore
 
             foreach (var data in p.Data)
             {
-                if (data.Key.Equals("google.c.a.c_l") && data.Value.Equals("Live Show"))
+                if (data.Key.Equals("google.c.a.c_l") && data.Value.Equals("New Show"))
                 {
                     liveShow = true;
                 }
